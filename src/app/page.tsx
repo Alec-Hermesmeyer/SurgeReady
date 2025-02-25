@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "next/link"
 import {
   AlertCircle,
@@ -17,6 +19,10 @@ import {
   FileText,
   Handshake,
   Smartphone,
+  Heart,
+  BookOpen,
+  Award,
+  Quote,
 } from "lucide-react"
 
 export default function Home() {
@@ -59,7 +65,7 @@ export default function Home() {
                   About Us
                 </Link>
               </nav>
-              <div className="flex items-center space-x-4 justify-between">
+              <div className="flex items-center space-x-2">
                 <Link href="/login">
                   <Button variant="outline">Log In</Button>
                 </Link>
@@ -276,7 +282,7 @@ export default function Home() {
           </div>
 
           {/* Featured Solution */}
-          <div className="mb-20  rounded-xl overflow-hidden py-12">
+          <div className="mb-16 bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2">
               <div className="p-8 lg:p-12 flex flex-col justify-center">
                 <Badge className="mb-4 bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 w-fit">
@@ -319,7 +325,7 @@ export default function Home() {
           </div>
 
           {/* Other Solutions */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="border-0 shadow-lg">
               <CardHeader>
                 <div className="bg-red-100 dark:bg-red-900/20 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
@@ -434,7 +440,7 @@ export default function Home() {
           </div>
 
           {/* Additional Solutions */}
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 pb-4">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg flex items-start gap-4">
               <div className="bg-red-100 dark:bg-red-900/20 p-2 rounded-full">
                 <FileText className="h-5 w-5 text-red-600" />
@@ -474,7 +480,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-700 p-6 pb-8 rounded-lg flex items-start gap-4">
+            <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg flex items-start gap-4">
               <div className="bg-red-100 dark:bg-red-900/20 p-2 rounded-full">
                 <Handshake className="h-5 w-5 text-red-600" />
               </div>
@@ -490,7 +496,7 @@ export default function Home() {
 
           <div className="mt-12 text-center">
             <Link href="/solutions">
-              <Button size="lg" className="bg-red-600 hover:bg-red-700 my-12 text-white">
+              <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
                 Explore All Solutions
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -509,55 +515,279 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="aspect-video rounded-xl bg-gray-200 dark:bg-gray-700">
-                {/* Team image would go here */}
-                <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-400">
-                  Team Image
-                </div>
-              </div>
-            </div>
+          <Tabs defaultValue="story" className="max-w-5xl mx-auto">
+            <TabsList className="grid w-full grid-cols-3 mb-8">
+              <TabsTrigger value="story">Our Story</TabsTrigger>
+              <TabsTrigger value="team">Our Team</TabsTrigger>
+              <TabsTrigger value="impact">Our Impact</TabsTrigger>
+            </TabsList>
 
-            <div>
-              <h3 className="text-2xl font-bold mb-4 dark:text-white">Our Mission</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">
-                SurgeReady Solutions was founded by emergency medicine professionals who experienced firsthand the
-                challenges of managing mass casualty events. We understand that these situations create inefficiencies
-                in emergency department processes, which can result in delays to critical patient care.
-              </p>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Our mission is to enhance emergency response through streamlining, automation, and training, enabling
-                hospitals to rapidly assess and prioritize treatment during overwhelming events.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-600 mt-1" />
-                  <div>
-                    <h4 className="font-semibold dark:text-white">Improved Communication</h4>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      Enhancing departmental coordination during crisis events
-                    </p>
+            <TabsContent value="story" className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                  <div className="aspect-video rounded-xl overflow-hidden">
+                    <img
+                      src="/placeholder.svg?height=400&width=600"
+                      alt="Emergency medical team in action"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-600 mt-1" />
-                  <div>
-                    <h4 className="font-semibold dark:text-white">Comprehensive Education</h4>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      Providing ongoing training for emergency preparedness
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-600 mt-1" />
-                  <div>
-                    <h4 className="font-semibold dark:text-white">Reproducible Documentation</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Ensuring consistent and thorough record-keeping</p>
+
+                <div>
+                  <h3 className="text-2xl font-bold mb-4 dark:text-white">Founded by First Responders</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">
+                    SurgeReady Solutions was founded in 2020 by Dr. Sarah Johnson and a team of emergency medicine
+                    professionals who experienced firsthand the challenges of managing mass casualty events. After
+                    responding to a major transportation accident that overwhelmed their hospital's resources, they
+                    recognized the critical need for better emergency response systems.
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">
+                    Our founding team combines over 75 years of emergency medicine experience with cutting-edge
+                    technology expertise to create solutions that address real-world challenges faced by emergency
+                    departments during crisis situations.
+                  </p>
+
+                  <div className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700">
+                    <Quote className="h-8 w-8 text-red-600 flex-shrink-0" />
+                    <blockquote className="italic text-gray-700 dark:text-gray-300">
+                    &quot;We built the system we wished we had during those critical moments when every second counts and
+                      lives hang in the balance.&quot;
+                    </blockquote>
                   </div>
                 </div>
               </div>
-            </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="bg-red-100 dark:bg-red-900/20 p-2 rounded-full">
+                      <Heart className="h-5 w-5 text-red-600" />
+                    </div>
+                    <h4 className="text-lg font-semibold dark:text-white">Our Mission</h4>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    To enhance emergency response through streamlining, automation, and training, enabling hospitals to
+                    rapidly assess and prioritize treatment during overwhelming events.
+                  </p>
+                </div>
+
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="bg-red-100 dark:bg-red-900/20 p-2 rounded-full">
+                      <BookOpen className="h-5 w-5 text-red-600" />
+                    </div>
+                    <h4 className="text-lg font-semibold dark:text-white">Our Values</h4>
+                  </div>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2">
+                      <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                      <span className="text-gray-600 dark:text-gray-300">Patient-centered solutions</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                      <span className="text-gray-600 dark:text-gray-300">Evidence-based approaches</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                      <span className="text-gray-600 dark:text-gray-300">Continuous improvement</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="bg-red-100 dark:bg-red-900/20 p-2 rounded-full">
+                      <Award className="h-5 w-5 text-red-600" />
+                    </div>
+                    <h4 className="text-lg font-semibold dark:text-white">Our Approach</h4>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    We combine clinical expertise with technological innovation to create practical solutions that work
+                    in real-world emergency scenarios, not just in theory.
+                  </p>
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="team" className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+                  <div className="flex items-center gap-4 mb-6">
+                    <Avatar className="h-16 w-16">
+                      <AvatarImage src="/placeholder.svg" alt="Dr. Sarah Johnson" />
+                      <AvatarFallback>SJ</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <h4 className="text-lg font-semibold dark:text-white">Dr. Sarah Johnson</h4>
+                      <p className="text-gray-600 dark:text-gray-400">Founder & Chief Medical Officer</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    Emergency Medicine physician with 15+ years of experience in trauma centers and disaster response.
+                    Led medical teams during multiple mass casualty events and developed protocols adopted by hospitals
+                    nationwide.
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <Badge variant="outline">Emergency Medicine</Badge>
+                    <Badge variant="outline">Disaster Response</Badge>
+                  </div>
+                </div>
+
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+                  <div className="flex items-center gap-4 mb-6">
+                    <Avatar className="h-16 w-16">
+                      <AvatarImage src="/placeholder.svg" alt="Michael Chen" />
+                      <AvatarFallback>MC</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <h4 className="text-lg font-semibold dark:text-white">Michael Chen</h4>
+                      <p className="text-gray-600 dark:text-gray-400">Co-Founder & Chief Technology Officer</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    Former healthcare software architect with experience developing systems for major hospital networks.
+                    Specializes in creating intuitive interfaces for high-stress environments where clarity is critical.
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <Badge variant="outline">Healthcare IT</Badge>
+                    <Badge variant="outline">UX Design</Badge>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <h3 className="text-xl font-bold mb-6 dark:text-white">Our Expert Team</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  {[
+                    { name: "Dr. James Wilson", role: "Emergency Medicine Advisor" },
+                    { name: "Elena Rodriguez", role: "Training Director" },
+                    { name: "Dr. Robert Kim", role: "Research Lead" },
+                    { name: "Aisha Patel", role: "Implementation Specialist" },
+                    { name: "Thomas Nguyen", role: "Software Engineer" },
+                    { name: "Dr. Lisa Thompson", role: "Clinical Consultant" },
+                    { name: "Marcus Johnson", role: "Customer Success" },
+                    { name: "Dr. Emily Clark", role: "Triage Specialist" },
+                  ].map((member, index) => (
+                    <div key={index} className="text-center">
+                      <Avatar className="h-20 w-20 mx-auto mb-3">
+                        <AvatarImage src="/placeholder.svg" alt={member.name} />
+                        <AvatarFallback>
+                          {member.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </AvatarFallback>
+                      </Avatar>
+                      <h5 className="font-medium dark:text-white">{member.name}</h5>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{member.role}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-red-50 dark:bg-red-900/10 p-6 rounded-lg mt-8">
+                <h4 className="text-lg font-semibold mb-3 dark:text-white">Join Our Team</h4>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  We're always looking for passionate individuals who share our mission to improve emergency response
+                  capabilities.
+                </p>
+                <Button variant="outline" className="bg-white dark:bg-gray-800">
+                  View Open Positions
+                </Button>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="impact" className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h3 className="text-2xl font-bold mb-4 dark:text-white">Making a Difference</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">
+                    Since our founding, SurgeReady Solutions has helped over 200 hospitals improve their emergency
+                    response capabilities. Our systems have been used in more than 50 real-world mass casualty events,
+                    helping coordinate care for thousands of patients.
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg text-center">
+                      <p className="text-3xl font-bold text-red-600">94%</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Reduction in triage time</p>
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg text-center">
+                      <p className="text-3xl font-bold text-red-600">87%</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Staff confidence increase</p>
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg text-center">
+                      <p className="text-3xl font-bold text-red-600">12K+</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Healthcare staff trained</p>
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg text-center">
+                      <p className="text-3xl font-bold text-red-600">200+</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Hospital partners</p>
+                    </div>
+                  </div>
+
+                  <Button className="bg-red-600 hover:bg-red-700 text-white">Read Case Studies</Button>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Quote className="h-5 w-5 text-red-600" />
+                      <h5 className="font-semibold dark:text-white">Memorial Hospital</h5>
+                    </div>
+                    <blockquote className="text-gray-600 dark:text-gray-300">
+                    &quot;SurgeReady's system was instrumental during our response to a multi-vehicle accident that brought
+                      in 27 patients simultaneously. The streamlined triage process saved critical minutes for our most
+                      severely injured patients.&quot;
+                    </blockquote>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
+                      — Dr. Robert Chen, Emergency Department Director
+                    </p>
+                  </div>
+
+                  <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Quote className="h-5 w-5 text-red-600" />
+                      <h5 className="font-semibold dark:text-white">County General Hospital</h5>
+                    </div>
+                    <blockquote className="text-gray-600 dark:text-gray-300">
+                      &quot;The training modules prepared our staff for a real-world chemical exposure event. Everyone knew
+                      their role and executed the response plan flawlessly, resulting in zero secondary exposures to
+                      staff.&quot;
+                    </blockquote>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
+                      — Maria Gonzalez, Emergency Preparedness Coordinator
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 mt-8">
+                <h4 className="text-xl font-bold mb-4 dark:text-white">Our Partners & Certifications</h4>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  <div className="bg-gray-100 dark:bg-gray-700 h-20 rounded flex items-center justify-center text-gray-500 dark:text-gray-400">
+                    Partner Logo
+                  </div>
+                  <div className="bg-gray-100 dark:bg-gray-700 h-20 rounded flex items-center justify-center text-gray-500 dark:text-gray-400">
+                    Partner Logo
+                  </div>
+                  <div className="bg-gray-100 dark:bg-gray-700 h-20 rounded flex items-center justify-center text-gray-500 dark:text-gray-400">
+                    Partner Logo
+                  </div>
+                  <div className="bg-gray-100 dark:bg-gray-700 h-20 rounded flex items-center justify-center text-gray-500 dark:text-gray-400">
+                    Partner Logo
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
+
+          <div className="mt-12 text-center">
+            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
+              Meet Our Team
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
           </div>
         </div>
       </section>

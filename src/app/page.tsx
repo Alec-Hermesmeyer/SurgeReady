@@ -597,7 +597,7 @@ export default function Home() {
                 </p>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-red-600 hover:bg-red-700">Start Free Trial</Button>
+                <Button className="w-full bg-red-600 hover:bg-red-700 text-white">Start Free Trial</Button>
               </CardFooter>
             </Card>
 
@@ -635,7 +635,7 @@ export default function Home() {
                 </Button>
               </Link>
               <Link href="/dashboard">
-                <Button size="lg" className="bg-red-600 hover:bg-red-700">
+                <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
                   Go to Dashboard
                 </Button>
               </Link>

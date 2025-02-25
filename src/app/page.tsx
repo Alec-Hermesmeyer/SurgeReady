@@ -24,6 +24,7 @@ import {
   Award,
   Quote,
 } from "lucide-react"
+import Image from "next/image"
 
 export default function Home() {
   return (
@@ -526,7 +527,9 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
                   <div className="aspect-video rounded-xl overflow-hidden">
-                    <img
+                    <Image
+                    width={600}
+                    height={400}
                       src="/placeholder.svg?height=400&width=600"
                       alt="Emergency medical team in action"
                       className="w-full h-full object-cover"
@@ -539,7 +542,7 @@ export default function Home() {
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
                     SurgeReady Solutions was founded in 2020 by Dr. Sarah Johnson and a team of emergency medicine
                     professionals who experienced firsthand the challenges of managing mass casualty events. After
-                    responding to a major transportation accident that overwhelmed their hospital's resources, they
+                    responding to a major transportation accident that overwhelmed their hospital&apos;s resources, they
                     recognized the critical need for better emergency response systems.
                   </p>
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -689,7 +692,7 @@ export default function Home() {
               <div className="bg-red-50 dark:bg-red-900/10 p-6 rounded-lg mt-8">
                 <h4 className="text-lg font-semibold mb-3 dark:text-white">Join Our Team</h4>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  We're always looking for passionate individuals who share our mission to improve emergency response
+                  We&apos;re always looking for passionate individuals who share our mission to improve emergency response
                   capabilities.
                 </p>
                 <Button variant="outline" className="bg-white dark:bg-gray-800">
@@ -737,7 +740,7 @@ export default function Home() {
                       <h5 className="font-semibold dark:text-white">Memorial Hospital</h5>
                     </div>
                     <blockquote className="text-gray-600 dark:text-gray-300">
-                    &quot;SurgeReady's system was instrumental during our response to a multi-vehicle accident that brought
+                    &quot;SurgeReady&apos;s system was instrumental during our response to a multi-vehicle accident that brought
                       in 27 patients simultaneously. The streamlined triage process saved critical minutes for our most
                       severely injured patients.&quot;
                     </blockquote>

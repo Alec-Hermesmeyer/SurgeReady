@@ -13,7 +13,10 @@ import {
   Hospital,
   Shield,
   Users,
-  Zap,
+  BarChart,
+  FileText,
+  Handshake,
+  Smartphone,
 } from "lucide-react"
 
 export default function Home() {
@@ -56,12 +59,12 @@ export default function Home() {
                   About Us
                 </Link>
               </nav>
-              <div className="flex items-center space-x-4 justify-between">
+              <div className="flex items-center space-x-2">
                 <Link href="/login">
-                  <Button  variant="outline">Log In</Button>
+                  <Button variant="outline">Log In</Button>
                 </Link>
                 <Link href="#try-tools">
-                  <Button className="bg-red-600 hover:bg-red-700 text-white">Try Our Tools</Button>
+                  <Button className="bg-red-600 hover:bg-red-700">Try Our Tools</Button>
                 </Link>
               </div>
             </div>
@@ -225,7 +228,7 @@ export default function Home() {
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-red-600 hover:bg-red-700 text-white">Learn More</Button>
+                <Button className="w-full bg-red-600 hover:bg-red-700">Learn More</Button>
               </CardFooter>
             </Card>
 
@@ -272,113 +275,222 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              <div className="bg-red-100 dark:bg-red-900/20 p-4 rounded-full">
-                <Zap className="h-8 w-8 text-red-600" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2 dark:text-white">Emergency Response System</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  Step-by-step guidance for hospital staff during mass casualty events, ensuring efficient patient care
-                  and resource allocation.
+          {/* Featured Solution */}
+          <div className="mb-20  rounded-xl overflow-hidden py-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+              <div className="p-8 lg:p-12 flex flex-col justify-center">
+                <Badge className="mb-4 bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 w-fit">
+                  Featured Solution
+                </Badge>
+                <h3 className="text-2xl font-bold mb-4 dark:text-white">Emergency Response System</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  Our flagship solution provides step-by-step guidance for hospital staff during mass casualty events,
+                  ensuring efficient patient care and resource allocation when every second counts.
                 </p>
-                <ul className="space-y-2">
-                  {[
-                    "Real-time patient tracking",
-                    "Resource management tools",
-                    "Staff assignment system",
-                    "Communication protocols",
-                  ].map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
-                      <span className="text-gray-600 dark:text-gray-300">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">Real-time patient tracking</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">Resource management tools</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">Staff assignment system</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">Communication protocols</span>
+                  </div>
+                </div>
+                <Button className="w-fit bg-red-600 hover:bg-red-700">
+                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
               </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              <div className="bg-red-100 dark:bg-red-900/20 p-4 rounded-full">
-                <Users className="h-8 w-8 text-red-600" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2 dark:text-white">Training & Certification</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  Comprehensive training modules and certification programs to prepare staff for emergency situations.
-                </p>
-                <ul className="space-y-2">
-                  {[
-                    "Interactive learning modules",
-                    "Scenario-based training",
-                    "Certification tracking",
-                    "Compliance management",
-                  ].map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
-                      <span className="text-gray-600 dark:text-gray-300">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              <div className="bg-red-100 dark:bg-red-900/20 p-4 rounded-full">
-                <AlertCircle className="h-8 w-8 text-red-600" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2 dark:text-white">Mass Casualty Protocols</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  Customizable protocols for different types of mass casualty events, from active shooters to chemical
-                  exposures.
-                </p>
-                <ul className="space-y-2">
-                  {[
-                    "Event-specific response plans",
-                    "Triage management systems",
-                    "Documentation templates",
-                    "After-action reporting",
-                  ].map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
-                      <span className="text-gray-600 dark:text-gray-300">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              <div className="bg-red-100 dark:bg-red-900/20 p-4 rounded-full">
-                <Clock className="h-8 w-8 text-red-600" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2 dark:text-white">Drill & Exercise Management</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  Tools to plan, execute, and evaluate emergency drills and exercises to ensure readiness.
-                </p>
-                <ul className="space-y-2">
-                  {[
-                    "Drill scheduling system",
-                    "Scenario generation tools",
-                    "Performance evaluation",
-                    "Improvement tracking",
-                  ].map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
-                      <span className="text-gray-600 dark:text-gray-300">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="bg-gray-200 dark:bg-gray-600 h-64 lg:h-auto">
+                {/* Image would go here */}
+                <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-400">
+                  Emergency Response System Image
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-2 text-center py-12">
+          {/* Other Solutions */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
+            <Card className="border-0 shadow-lg">
+              <CardHeader>
+                <div className="bg-red-100 dark:bg-red-900/20 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                  <Users className="h-6 w-6 text-red-600" />
+                </div>
+                <CardTitle>Training & Certification</CardTitle>
+                <CardDescription className="text-base">
+                  Comprehensive training modules and certification programs to prepare staff for emergency situations.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                    <span className="text-gray-600 dark:text-gray-300">Interactive learning modules</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                    <span className="text-gray-600 dark:text-gray-300">Scenario-based training</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                    <span className="text-gray-600 dark:text-gray-300">Certification tracking</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                    <span className="text-gray-600 dark:text-gray-300">Compliance management</span>
+                  </li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button variant="outline" className="w-full">
+                  Explore Training
+                </Button>
+              </CardFooter>
+            </Card>
+
+            <Card className="border-0 shadow-lg">
+              <CardHeader>
+                <div className="bg-red-100 dark:bg-red-900/20 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                  <AlertCircle className="h-6 w-6 text-red-600" />
+                </div>
+                <CardTitle>Mass Casualty Protocols</CardTitle>
+                <CardDescription className="text-base">
+                  Customizable protocols for different types of mass casualty events, from active shooters to chemical
+                  exposures.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                    <span className="text-gray-600 dark:text-gray-300">Event-specific response plans</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                    <span className="text-gray-600 dark:text-gray-300">Triage management systems</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                    <span className="text-gray-600 dark:text-gray-300">Documentation templates</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                    <span className="text-gray-600 dark:text-gray-300">After-action reporting</span>
+                  </li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button variant="outline" className="w-full">
+                  View Protocols
+                </Button>
+              </CardFooter>
+            </Card>
+
+            <Card className="border-0 shadow-lg">
+              <CardHeader>
+                <div className="bg-red-100 dark:bg-red-900/20 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                  <Clock className="h-6 w-6 text-red-600" />
+                </div>
+                <CardTitle>Drill & Exercise Management</CardTitle>
+                <CardDescription className="text-base">
+                  Tools to plan, execute, and evaluate emergency drills and exercises to ensure readiness.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                    <span className="text-gray-600 dark:text-gray-300">Drill scheduling system</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                    <span className="text-gray-600 dark:text-gray-300">Scenario generation tools</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                    <span className="text-gray-600 dark:text-gray-300">Performance evaluation</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-red-600"></div>
+                    <span className="text-gray-600 dark:text-gray-300">Improvement tracking</span>
+                  </li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button variant="outline" className="w-full">
+                  Schedule Drills
+                </Button>
+              </CardFooter>
+            </Card>
+          </div>
+
+          {/* Additional Solutions */}
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 pb-4">
+            <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg flex items-start gap-4">
+              <div className="bg-red-100 dark:bg-red-900/20 p-2 rounded-full">
+                <FileText className="h-5 w-5 text-red-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-2 dark:text-white">Documentation System</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Streamlined documentation tools that ensure accurate record-keeping during chaotic situations, with
+                  templates designed specifically for mass casualty events.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg flex items-start gap-4">
+              <div className="bg-red-100 dark:bg-red-900/20 p-2 rounded-full">
+                <BarChart className="h-5 w-5 text-red-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-2 dark:text-white">Analytics & Reporting</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Comprehensive analytics tools to evaluate response effectiveness, identify areas for improvement, and
+                  track staff readiness and certification status.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg flex items-start gap-4">
+              <div className="bg-red-100 dark:bg-red-900/20 p-2 rounded-full">
+                <Smartphone className="h-5 w-5 text-red-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-2 dark:text-white">Mobile Response Tools</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Mobile applications that provide critical information and guidance to staff during emergencies, even
+                  when traditional communication systems are compromised.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-700 p-6 pb-8 rounded-lg flex items-start gap-4">
+              <div className="bg-red-100 dark:bg-red-900/20 p-2 rounded-full">
+                <Handshake className="h-5 w-5 text-red-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-2 dark:text-white">Multi-Agency Coordination</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Tools to facilitate seamless coordination between hospitals, emergency services, and government
+                  agencies during large-scale emergencies and disasters.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 text-center">
             <Link href="/solutions">
-              <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
+              <Button size="lg" className="bg-red-600 hover:bg-red-700 my-12 text-white">
                 Explore All Solutions
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -477,7 +589,7 @@ export default function Home() {
             <Card className="bg-white text-gray-900">
               <CardHeader>
                 <CardTitle>30-Day Free Trial</CardTitle>
-                <Badge className="bg-red-600 text-white w-40">Most Popular</Badge>
+                <Badge className="bg-red-600 text-white">Most Popular</Badge>
               </CardHeader>
               <CardContent>
                 <p className="mb-4 text-gray-600">
@@ -485,7 +597,7 @@ export default function Home() {
                 </p>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-red-600 hover:bg-red-700 text-white">Start Free Trial</Button>
+                <Button className="w-full bg-red-600 hover:bg-red-700">Start Free Trial</Button>
               </CardFooter>
             </Card>
 

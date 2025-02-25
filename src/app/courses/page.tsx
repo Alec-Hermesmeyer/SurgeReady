@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Clock, Filter, Play, Search, Star, Users } from "lucide-react"
 import DashboardHeader from "@/components/dashboard-header"
+import Image from "next/image"
 
 export default function CoursesPage() {
   return (
@@ -174,8 +175,8 @@ function CourseCard({ course }: { course: any }) {
   return (
     <Card className="overflow-hidden">
       <div className="relative h-48 w-full p-12">
-        <img src={course.image || "/placeholder.svg"} alt={course.title} className="h-full w-full object-cover" />
-        {course.tag && <Badge className="absolute  mt-4 top-3 left-1 bg-red-600 text-white">{course.tag}</Badge>}
+        <Image height={200} width={400} src={course.image || "/placeholder.svg"} alt={course.title} className="h-full w-full object-cover" />
+        {course.tag && <Badge className="absolute  top-3 right-3 bg-red-600 text-white">{course.tag}</Badge>}
       </div>
       <CardHeader>
         <CardTitle className="line-clamp-1">{course.title}</CardTitle>

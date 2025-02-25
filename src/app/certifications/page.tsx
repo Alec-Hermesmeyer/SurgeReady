@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Award, Calendar, Check, Clock, Download, Filter, Search, Star, Users } from "lucide-react"
 import DashboardHeader from "@/components/dashboard-header"
+import Image from "next/image"
 
 export default function CertificationsPage() {
   return (
@@ -424,12 +425,14 @@ function AvailableCertificationCard({ certification }: { certification: any }) {
   return (
     <Card className="overflow-hidden">
       <div className="relative h-48 w-full">
-        <img
+        <Image
+          height={200}
+          width={400}
           src={certification.image || "/placeholder.svg"}
           alt={certification.title}
           className="h-full w-full object-cover"
         />
-        <Badge className="absolute top-3 right-3 bg-red-600">{certification.level}</Badge>
+        <Badge className="absolute top-3 right-3 bg-red-600 text-white">{certification.level}</Badge>
       </div>
       <CardHeader>
         <CardTitle className="line-clamp-1">{certification.title}</CardTitle>
@@ -464,7 +467,7 @@ function AvailableCertificationCard({ certification }: { certification: any }) {
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full bg-red-600 hover:bg-red-700">Enroll Now</Button>
+        <Button className="w-full bg-red-600 hover:bg-red-700 text-white">Enroll Now</Button>
       </CardFooter>
     </Card>
   )
@@ -524,7 +527,7 @@ function InProgressCertificationCard({ certification }: { certification: any }) 
         <Button variant="outline" size="sm">
           View Details
         </Button>
-        <Button size="sm" className="bg-red-600 hover:bg-red-700">
+        <Button size="sm" className="bg-red-600 hover:bg-red-700 text-white">
           Continue
         </Button>
       </CardFooter>

@@ -56,12 +56,12 @@ export default function Home() {
                   About Us
                 </Link>
               </nav>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-4 justify-between">
                 <Link href="/login">
-                  <Button variant="outline">Log In</Button>
+                  <Button  variant="outline">Log In</Button>
                 </Link>
                 <Link href="#try-tools">
-                  <Button className="bg-red-600 hover:bg-red-700">Try Our Tools</Button>
+                  <Button className="bg-red-600 hover:bg-red-700 text-white">Try Our Tools</Button>
                 </Link>
               </div>
             </div>
@@ -225,7 +225,7 @@ export default function Home() {
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-red-600 hover:bg-red-700">Learn More</Button>
+                <Button className="w-full bg-red-600 hover:bg-red-700 text-white">Learn More</Button>
               </CardFooter>
             </Card>
 
@@ -378,7 +378,7 @@ export default function Home() {
 
           <div className="mt-2 text-center py-12">
             <Link href="/solutions">
-              <Button size="lg" className="bg-red-600 hover:bg-red-700">
+              <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
                 Explore All Solutions
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -477,7 +477,7 @@ export default function Home() {
             <Card className="bg-white text-gray-900">
               <CardHeader>
                 <CardTitle>30-Day Free Trial</CardTitle>
-                <Badge className="bg-red-600 text-white">Most Popular</Badge>
+                <Badge className="bg-red-600 text-white w-40">Most Popular</Badge>
               </CardHeader>
               <CardContent>
                 <p className="mb-4 text-gray-600">
@@ -485,7 +485,7 @@ export default function Home() {
                 </p>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-red-600 hover:bg-red-700">Start Free Trial</Button>
+                <Button className="w-full bg-red-600 hover:bg-red-700 text-white">Start Free Trial</Button>
               </CardFooter>
             </Card>
 

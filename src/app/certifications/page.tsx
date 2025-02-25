@@ -246,7 +246,7 @@ export default function CertificationsPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Team Certification Status</CardTitle>
-                <CardDescription>Overview of team members' certifications</CardDescription>
+                <CardDescription>Overview of team members&apos; certifications</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">

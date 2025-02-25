@@ -9,6 +9,38 @@ import { Award, Calendar, Check, Clock, Download, Filter, Search, Star, Users } 
 import DashboardHeader from "@/components/dashboard-header"
 import Image from "next/image"
 
+interface Certification {
+    title: string
+    level: string
+    issueDate: string
+    expiryDate: string
+    issuer: string
+    credentialId: string
+    skills: string[]
+  }
+  
+  interface AvailableCertification {
+    title: string
+    description: string
+    level: string
+    duration: string
+    prerequisites: string[]
+    popularity: number
+    enrollments: number
+    image: string
+  }
+  
+  interface InProgressCertification {
+    title: string
+    level: string
+    progress: number
+    dueDate: string
+    completedModules: number
+    totalModules: number
+    nextModule: string
+    estimatedCompletion: string
+  }
+
 export default function CertificationsPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -357,7 +389,7 @@ export default function CertificationsPage() {
   )
 }
 
-function CertificationCard({ certification }: { certification: any }) {
+function CertificationCard({ certification }: { certification: Certification }) {
   return (
     <Card>
       <CardHeader>
@@ -421,7 +453,7 @@ function CertificationCard({ certification }: { certification: any }) {
   )
 }
 
-function AvailableCertificationCard({ certification }: { certification: any }) {
+function AvailableCertificationCard({ certification }: { certification: AvailableCertification }) {
   return (
     <Card className="overflow-hidden">
       <div className="relative h-48 w-full">
@@ -473,7 +505,7 @@ function AvailableCertificationCard({ certification }: { certification: any }) {
   )
 }
 
-function InProgressCertificationCard({ certification }: { certification: any }) {
+function InProgressCertificationCard({ certification }: { certification: InProgressCertification }) {
   return (
     <Card>
       <CardHeader>

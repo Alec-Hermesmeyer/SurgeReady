@@ -6,7 +6,16 @@ import { Badge } from "@/components/ui/badge"
 import { Clock, Filter, Play, Search, Star, Users } from "lucide-react"
 import DashboardHeader from "@/components/dashboard-header"
 import Image from "next/image"
-
+interface Course {
+  title: string
+  description: string
+  level: string
+  duration: string
+  students: number
+  rating: number
+  image: string
+  tag?: string
+}
 export default function CoursesPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -171,7 +180,7 @@ export default function CoursesPage() {
   )
 }
 
-function CourseCard({ course }: { course: any }) {
+function CourseCard({ course }: { course: Course }) {
   return (
     <Card className="overflow-hidden">
       <div className="relative h-48 w-full p-12">

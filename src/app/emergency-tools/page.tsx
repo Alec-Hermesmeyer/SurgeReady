@@ -5,6 +5,14 @@ import { Badge } from "@/components/ui/badge"
 import { AlertCircle, Clock, FileText, Play, Users } from "lucide-react"
 import DashboardHeader from "@/components/dashboard-header"
 
+interface Protocol {
+    title: string
+    description: string
+    lastUpdated: string
+    steps: number
+    tag?: string
+  }
+
 export default function EmergencyToolsPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -261,7 +269,7 @@ export default function EmergencyToolsPage() {
   )
 }
 
-function ProtocolCard({ protocol }: { protocol: any }) {
+function ProtocolCard({ protocol }: { protocol: Protocol }) {
   return (
     <Card>
       <CardHeader>

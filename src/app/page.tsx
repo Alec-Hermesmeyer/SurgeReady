@@ -59,12 +59,12 @@ export default function Home() {
                   About Us
                 </Link>
               </nav>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-4 justify-between">
                 <Link href="/login">
                   <Button variant="outline">Log In</Button>
                 </Link>
                 <Link href="#try-tools">
-                  <Button className="bg-red-600 hover:bg-red-700">Try Our Tools</Button>
+                  <Button className="bg-red-600 hover:bg-red-700 text-white">Try Our Tools</Button>
                 </Link>
               </div>
             </div>
@@ -228,7 +228,7 @@ export default function Home() {
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-red-600 hover:bg-red-700">Learn More</Button>
+                <Button className="w-full bg-red-600 hover:bg-red-700 text-white">Learn More</Button>
               </CardFooter>
             </Card>
 
@@ -305,7 +305,7 @@ export default function Home() {
                     <span className="text-gray-600 dark:text-gray-300">Communication protocols</span>
                   </div>
                 </div>
-                <Button className="w-fit bg-red-600 hover:bg-red-700">
+                <Button className="w-fit bg-red-600 hover:bg-red-700 text-white">
                   Learn More <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>

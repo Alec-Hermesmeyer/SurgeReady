@@ -1001,7 +1001,7 @@ export default function Home() {
                 </Button>
               </Link>
               <Link href="/dashboard">
-                <Button size="lg" className="bg-red-600 hover:bg-red-700">
+                <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
                   Go to Dashboard
                 </Button>
               </Link>

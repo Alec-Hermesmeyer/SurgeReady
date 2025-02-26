@@ -551,7 +551,7 @@ export default function Home() {
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
                     SurgeReady Solutions was founded in 2020 by Dr. Sarah Johnson and a team of emergency medicine
                     professionals who experienced firsthand the challenges of managing mass casualty events. After
-                    responding to a major transportation accident that overwhelmed their hospital's resources, they
+                    responding to a major transportation accident that overwhelmed their hospital&apos;s resources, they
                     recognized the critical need for better emergency response systems.
                   </p>
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -811,7 +811,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold mb-4">Ready to Enhance Your Emergency Preparedness?</h2>
             <p className="text-xl max-w-3xl mx-auto">
               Experience how SurgeReady Solutions can transform your emergency response capabilities with a personalized
-              approach tailored to your hospital's needs.
+              approach tailored to your hospital&apos;s needs.
             </p>
           </div>
 
@@ -885,8 +885,8 @@ export default function Home() {
                 </ul>
                 <div className="mt-6 p-4 bg-white/10 rounded-lg">
                   <p className="text-sm italic">
-                    "The demo was incredibly helpful in understanding how SurgeReady could be customized for our
-                    specific needs."
+                    &quot;The demo was incredibly helpful in understanding how SurgeReady could be customized for our
+                    specific needs.&quot;
                   </p>
                   <p className="text-xs mt-2">— Emergency Department Director</p>
                 </div>

@@ -15,6 +15,7 @@ import {
   Hospital,
   Shield,
   Users,
+  Zap,
   BarChart,
   FileText,
   Handshake,
@@ -23,6 +24,14 @@ import {
   BookOpen,
   Award,
   Quote,
+  Calendar,
+  CheckCircle2,
+  Headset,
+  LifeBuoy,
+  Presentation,
+  Settings,
+  Star,
+  Timer,
 } from "lucide-react"
 import Image from "next/image"
 
@@ -103,7 +112,7 @@ export default function Home() {
               Streamlining Emergency Response for Mass Casualty Events
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
+              <Button size="lg" className=" text-white t">
                 Start Free Trial
               </Button>
               <Button size="lg" variant="outline">
@@ -528,8 +537,8 @@ export default function Home() {
                 <div>
                   <div className="aspect-video rounded-xl overflow-hidden">
                     <Image
-                    width={600}
-                    height={400}
+                      width={600}
+                      height={400}
                       src="/placeholder.svg?height=400&width=600"
                       alt="Emergency medical team in action"
                       className="w-full h-full object-cover"
@@ -542,7 +551,7 @@ export default function Home() {
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
                     SurgeReady Solutions was founded in 2020 by Dr. Sarah Johnson and a team of emergency medicine
                     professionals who experienced firsthand the challenges of managing mass casualty events. After
-                    responding to a major transportation accident that overwhelmed their hospital&apos;s resources, they
+                    responding to a major transportation accident that overwhelmed their hospital's resources, they
                     recognized the critical need for better emergency response systems.
                   </p>
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -787,7 +796,7 @@ export default function Home() {
           </Tabs>
 
           <div className="mt-12 text-center">
-            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
+            <Button size="lg" className="bg-red-600 hover:bg-red-700">
               Meet Our Team
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -796,57 +805,181 @@ export default function Home() {
       </section>
 
       {/* Try Our Tools Section */}
-      <section id="try-tools" className="py-20 bg-red-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Enhance Your Emergency Preparedness?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Experience how SurgeReady Solutions can transform your emergency response capabilities with a free trial.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <Card className="bg-white/10 border-white/20 text-white">
-              <CardHeader>
-                <CardTitle>Free Demo</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4">
-                  Schedule a personalized demonstration of our platform with one of our specialists.
-                </p>
+      <section id="try-tools" className="py-20 bg-gradient-to-br from-red-600 to-red-800 text-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Ready to Enhance Your Emergency Preparedness?</h2>
+            <p className="text-xl max-w-3xl mx-auto">
+              Experience how SurgeReady Solutions can transform your emergency response capabilities with a personalized
+              approach tailored to your hospital's needs.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="relative">
+              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-black font-bold py-1 px-4 rounded-full text-sm">
+                MOST POPULAR
+              </div>
+              <Card className="bg-white text-gray-900 overflow-hidden h-full flex flex-col">
+                <div className="bg-red-50 p-6 text-center">
+                  <h3 className="text-2xl font-bold text-red-600 mb-2">30-Day Free Trial</h3>
+                  <div className="flex justify-center items-baseline mb-4">
+                    <span className="text-5xl font-extrabold">$0</span>
+                    <span className="text-xl text-gray-500 ml-1">/month</span>
+                  </div>
+                  <p className="text-gray-600">Full access to core features</p>
+                </div>
+                <CardContent className="flex-grow p-6">
+                  <ul className="space-y-3">
+                    {[
+                      { feature: "Emergency response protocols", included: true },
+                      { feature: "Basic training modules", included: true },
+                      { feature: "Documentation templates", included: true },
+                      { feature: "Single department access", included: true },
+                      { feature: "Email support", included: true },
+                      { feature: "Advanced analytics", included: false },
+                      { feature: "Custom integrations", included: false },
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        {item.included ? (
+                          <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        ) : (
+                          <div className="h-5 w-5 border border-gray-300 rounded-full mt-0.5 flex-shrink-0" />
+                        )}
+                        <span className={item.included ? "text-gray-800" : "text-gray-400"}>{item.feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+                <div className="p-6 pt-0">
+                  <Button className="w-full bg-red-600 hover:bg-red-700 text-white">Start Free Trial</Button>
+                  <p className="text-xs text-center text-gray-500 mt-3">No credit card required. Cancel anytime.</p>
+                </div>
+              </Card>
+            </div>
+
+            <Card className="bg-white/10 border-white/20 text-white h-full flex flex-col">
+              <div className="p-6 text-center">
+                <h3 className="text-2xl font-bold mb-2">Guided Demo</h3>
+                <div className="flex justify-center items-baseline mb-4">
+                  <span className="text-5xl font-extrabold">Free</span>
+                </div>
+                <p className="text-white/80">Personalized walkthrough</p>
+              </div>
+              <CardContent className="flex-grow p-6">
+                <ul className="space-y-3">
+                  {[
+                    { feature: "1-hour personalized demo", icon: <Presentation className="h-5 w-5 text-red-300" /> },
+                    {
+                      feature: "Tailored to your hospital's needs",
+                      icon: <Settings className="h-5 w-5 text-red-300" />,
+                    },
+                    { feature: "Q&A with product specialists", icon: <Headset className="h-5 w-5 text-red-300" /> },
+                    { feature: "Implementation roadmap", icon: <Calendar className="h-5 w-5 text-red-300" /> },
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      {item.icon}
+                      <span className="text-white/90">{item.feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 p-4 bg-white/10 rounded-lg">
+                  <p className="text-sm italic">
+                    "The demo was incredibly helpful in understanding how SurgeReady could be customized for our
+                    specific needs."
+                  </p>
+                  <p className="text-xs mt-2">— Emergency Department Director</p>
+                </div>
               </CardContent>
-              <CardFooter>
-                <Button variant="secondary" className="w-full">
+              <div className="p-6 pt-0">
+                <Button variant="outline" className="w-full border-white hover:bg-white/20">
                   Schedule Demo
                 </Button>
-              </CardFooter>
+              </div>
             </Card>
 
-            <Card className="bg-white text-gray-900">
-              <CardHeader>
-                <CardTitle>30-Day Free Trial</CardTitle>
-                <Badge className="bg-red-600 text-white">Most Popular</Badge>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4 text-gray-600">
-                  Full access to all features for 30 days with guided onboarding support.
-                </p>
+            <Card className="bg-white/10 border-white/20 text-white h-full flex flex-col">
+              <div className="p-6 text-center">
+                <h3 className="text-2xl font-bold mb-2">Enterprise</h3>
+                <div className="flex justify-center items-baseline mb-4">
+                  <span className="text-xl text-white/80">Custom Pricing</span>
+                </div>
+                <p className="text-white/80">For hospital networks</p>
+              </div>
+              <CardContent className="flex-grow p-6">
+                <ul className="space-y-3">
+                  {[
+                    { feature: "All features included", icon: <CheckCircle2 className="h-5 w-5 text-green-400" /> },
+                    { feature: "Multi-hospital deployment", icon: <Building className="h-5 w-5 text-red-300" /> },
+                    { feature: "Dedicated account manager", icon: <Users className="h-5 w-5 text-red-300" /> },
+                    { feature: "Custom integrations", icon: <Settings className="h-5 w-5 text-red-300" /> },
+                    { feature: "24/7 priority support", icon: <LifeBuoy className="h-5 w-5 text-red-300" /> },
+                    { feature: "On-site training", icon: <Presentation className="h-5 w-5 text-red-300" /> },
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      {item.icon}
+                      <span className="text-white/90">{item.feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-red-600 hover:bg-red-700 text-white">Start Free Trial</Button>
-              </CardFooter>
-            </Card>
-
-            <Card className="bg-white/10 border-white/20 text-white">
-              <CardHeader>
-                <CardTitle>Contact Sales</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4">Discuss custom solutions and enterprise pricing with our sales team.</p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="secondary" className="w-full">
+              <div className="p-6 pt-0">
+                <Button variant="outline" className="w-full border-white hover:bg-white/20">
                   Contact Sales
                 </Button>
-              </CardFooter>
+              </div>
             </Card>
+          </div>
+
+          <div className="mt-16 max-w-4xl mx-auto">
+            <div className="bg-white/10 rounded-xl p-8">
+              <h3 className="text-2xl font-bold mb-6 text-center">Why Choose SurgeReady?</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="flex flex-col items-center text-center">
+                  <div className="bg-white/20 p-3 rounded-full mb-4">
+                    <Zap className="h-6 w-6" />
+                  </div>
+                  <h4 className="text-lg font-semibold mb-2">Quick Implementation</h4>
+                  <p className="text-white/80">
+                    Get up and running in as little as 2 weeks with our streamlined onboarding process.
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-center text-center">
+                  <div className="bg-white/20 p-3 rounded-full mb-4">
+                    <Star className="h-6 w-6" />
+                  </div>
+                  <h4 className="text-lg font-semibold mb-2">98% Satisfaction Rate</h4>
+                  <p className="text-white/80">
+                    Join hundreds of satisfied hospitals that trust SurgeReady for emergency preparedness.
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-center text-center">
+                  <div className="bg-white/20 p-3 rounded-full mb-4">
+                    <Timer className="h-6 w-6" />
+                  </div>
+                  <h4 className="text-lg font-semibold mb-2">ROI in 6 Months</h4>
+                  <p className="text-white/80">
+                    See measurable improvements in response times and resource utilization within months.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 text-center">
+              <p className="text-lg mb-6">
+                Have questions? Our team is ready to help you find the right solution for your hospital.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" className="bg-white text-red-600 hover:bg-white/90">
+                  Schedule a Consultation
+                </Button>
+                <Button size="lg" variant="outline" className="border-white hover:bg-white/20">
+                  View Pricing Details
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -868,7 +1001,7 @@ export default function Home() {
                 </Button>
               </Link>
               <Link href="/dashboard">
-                <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
+                <Button size="lg" className="bg-red-600 hover:bg-red-700">
                   Go to Dashboard
                 </Button>
               </Link>

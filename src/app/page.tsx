@@ -112,7 +112,7 @@ export default function Home() {
               Streamlining Emergency Response for Mass Casualty Events
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className=" text-white t">
+              <Button size="lg" className=" text-white bg-red-600 hover:bg-red-700">
                 Start Free Trial
               </Button>
               <Button size="lg" variant="outline">
@@ -796,7 +796,7 @@ export default function Home() {
           </Tabs>
 
           <div className="mt-12 text-center">
-            <Button size="lg" className="bg-red-600 hover:bg-red-700">
+            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
               Meet Our Team
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>

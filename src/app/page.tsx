@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -34,60 +36,77 @@ import {
   Timer,
 } from "lucide-react"
 import Image from "next/image"
+import { useState } from "react"
 
 export default function Home() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <main className="min-h-screen">
       {/* Navigation */}
       <header className="bg-white dark:bg-gray-900 border-b dark:border-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center">
-              <Link href="/" className="text-xl font-bold text-red-600 mr-8">
-                SurgeReady
+      <div className="container mx-auto">
+        <div className="flex h-24 items-center justify-between">
+          {/* Logo Section */}
+          <div className="flex items-center">
+            <Link href="/" className="text-xl font-bold text-red-600  mt-2">
+              <Image
+                width={200}
+                height={50}
+                src="/SRLogo.png"
+                alt="SurgeReady Logo"
+                className="h-auto w-auto"
+                priority
+              />
+            </Link>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
+            {[
+              { href: "#who-we-serve", label: "Who We Serve" },
+              { href: "#hospital-size", label: "Hospital Size" },
+              { href: "#solutions", label: "Solutions" },
+              { href: "#about-us", label: "About Us" },
+            ].map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-gray-700 hover:text-red-600 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
+              >
+                {label}
               </Link>
-            </div>
+            ))}
+          </nav>
 
-            <div className="hidden md:flex items-center space-x-4">
-              <nav className="flex items-center space-x-4">
-                <Link
-                  href="#who-we-serve"
-                  className="text-gray-700 hover:text-red-600 dark:text-gray-300 dark:hover:text-white"
-                >
-                  Who We Serve
-                </Link>
-                <Link
-                  href="#hospital-size"
-                  className="text-gray-700 hover:text-red-600 dark:text-gray-300 dark:hover:text-white"
-                >
-                  Hospital Size
-                </Link>
-                <Link
-                  href="#solutions"
-                  className="text-gray-700 hover:text-red-600 dark:text-gray-300 dark:hover:text-white"
-                >
-                  Solutions
-                </Link>
-                <Link
-                  href="#about-us"
-                  className="text-gray-700 hover:text-red-600 dark:text-gray-300 dark:hover:text-white"
-                >
-                  About Us
-                </Link>
-              </nav>
-              <div className="flex items-center space-x-2">
-                <Link href="/login">
-                  <Button variant="outline">Log In</Button>
-                </Link>
-                <Link href="#try-tools">
-                  <Button className="bg-red-600 hover:bg-red-700 text-white">Try Our Tools</Button>
-                </Link>
-              </div>
-            </div>
+          {/* CTA Buttons */}
+          <div className="hidden md:flex items-center space-x-2">
+            <Link href="/login">
+              <Button variant="outline">Log In</Button>
+            </Link>
+            <Link href="#try-tools">
+              <Button className="bg-red-600 hover:bg-red-700 text-white">Try Our Tools</Button>
+            </Link>
+          </div>
 
-            <div className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <span className="sr-only">Open menu</span>
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle Menu"
+            >
+              {isMobileMenuOpen ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -97,11 +116,40 @@ export default function Home() {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-              </Button>
-            </div>
+              )}
+            </Button>
           </div>
         </div>
-      </header>
+
+        {/* Mobile Navigation Menu */}
+        {isMobileMenuOpen && (
+          <nav className="md:hidden mt-2 space-y-2 p-4 bg-white dark:bg-gray-900 border-t dark:border-gray-800 rounded-lg shadow-lg">
+            {[
+              { href: "#who-we-serve", label: "Who We Serve" },
+              { href: "#hospital-size", label: "Hospital Size" },
+              { href: "#solutions", label: "Solutions" },
+              { href: "#about-us", label: "About Us" },
+            ].map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="block text-gray-700 hover:text-red-600 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
+              >
+                {label}
+              </Link>
+            ))}
+            <div className="flex flex-col space-y-2 mt-4">
+              <Link href="/login">
+                <Button variant="outline" className="w-full">Log In</Button>
+              </Link>
+              <Link href="#try-tools">
+                <Button className="bg-red-600 hover:bg-red-700 text-white w-full">Try Our Tools</Button>
+              </Link>
+            </div>
+          </nav>
+        )}
+      </div>
+    </header>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-red-50 to-white dark:from-gray-900 dark:to-gray-800">

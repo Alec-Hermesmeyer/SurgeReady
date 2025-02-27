@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Bell, Menu } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
+import Image from "next/image"
 
 export default function DashboardHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -14,10 +15,17 @@ export default function DashboardHeader() {
   return (
     <header className="bg-white dark:bg-gray-800 border-b dark:border-gray-700 sticky top-0 z-10">
       <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-24 items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="text-xl font-bold text-red-600 mr-8">
-              SurgeReady
+            <Image
+                width={200}
+                height={50}
+                src="/SRLogo.png"
+                alt="SurgeReady Logo"
+                className="h-auto w-auto"
+                priority
+                />
             </Link>
 
             <nav className="hidden md:flex space-x-8">

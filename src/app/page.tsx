@@ -619,7 +619,7 @@ export default function Home() {
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
                   SurgeReady Solutions was founded by ER Nurse Practitioners with decades of experience and training
                     in mass casualty response. After responding to a major transportation accident that overwhelmed
-                    their hospital's resources, they recognized the critical need for better emergency response systems.
+                    their hospital&apos;s resources, they recognized the critical need for better emergency response systems.
                   </p>
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
                   Our founding team combines over 75 years of emergency healthcare experience with cutting-edge
@@ -878,7 +878,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold mb-4">Ready to Enhance Your Emergency Preparedness?</h2>
             <p className="text-xl max-w-3xl mx-auto">
               Experience how SurgeReady Solutions can transform your emergency response capabilities with a personalized
-              approach tailored to your hospital's needs.
+              approach tailored to your hospital&apos;s needs.
             </p>
           </div>
 

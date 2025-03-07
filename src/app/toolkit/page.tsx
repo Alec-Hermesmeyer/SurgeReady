@@ -32,7 +32,7 @@ export default function ToolkitPage() {
           <div>
             <h1 className="text-3xl font-bold mb-2 dark:text-white">Emergency Response Toolkit</h1>
             <p className="text-gray-600 dark:text-gray-400">
-              Customize your facility's mass casualty response procedures
+              Customize your facility&apos;s mass casualty response procedures
             </p>
           </div>
 
@@ -344,7 +344,7 @@ function ChargeRNSection() {
         <Separator />
 
         <div>
-          <h3 className="text-lg font-medium mb-4">Four S's Report to Incident Command</h3>
+          <h3 className="text-lg font-medium mb-4">Four S&apos;s Report to Incident Command</h3>
           <p className="text-gray-600 dark:text-gray-400 mb-4">Assess every 15 minutes or as needed</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

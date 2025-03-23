@@ -12,6 +12,7 @@
 
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
+    --popover-background: 0 0% 100%;
 
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
@@ -44,6 +45,7 @@
 
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
+    --popover-background: 222.2 84% 4.9%;
 
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
@@ -72,6 +74,15 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .solid-dropdown {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--popover-background));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
 }
 

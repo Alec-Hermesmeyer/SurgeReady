@@ -267,7 +267,7 @@ export function ChargeRNSection({
           <Separator />
 
           <div>
-            <h3 className="text-lg font-medium mb-4">Four S's Report to Incident Command</h3>
+            <h3 className="text-lg font-medium mb-4">Four S&apos;s Report to Incident Command</h3>
             <p className="text-gray-600 dark:text-gray-400 mb-4">Assess every 15 minutes or as needed</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 w-full">

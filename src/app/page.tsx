@@ -552,7 +552,9 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
                   <div className="aspect-video rounded-xl overflow-hidden">
-                    <img
+                    <Image
+                      width={600}
+                      height={400}
                       src="/placeholder.svg?height=400&width=600"
                       alt="Emergency medical team in action"
                       className="w-full h-full object-cover"
@@ -565,7 +567,7 @@ export default function Home() {
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
                     SurgeReady Solutions was founded by ER Nurse Practitioners with decades of experience and training
                     in mass casualty response. After responding to a major transportation accident that overwhelmed
-                    their hospital's resources, they recognized the critical need for better emergency response systems.
+                    their hospital&apos;s resources, they recognized the critical need for better emergency response systems.
                   </p>
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
                     Our founding team combines over 75 years of emergency healthcare experience with cutting-edge
@@ -576,8 +578,8 @@ export default function Home() {
                   <div className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700">
                     <Quote className="h-8 w-8 text-red-600 flex-shrink-0" />
                     <blockquote className="italic text-gray-700 dark:text-gray-300">
-                      "We built the system we wished we had during those critical moments when every second counts and
-                      lives hang in the balance."
+                      &quote;We built the system we wished we had during those critical moments when every second counts and
+                      lives hang in the balance.&quote;
                     </blockquote>
                   </div>
                 </div>

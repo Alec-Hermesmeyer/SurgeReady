@@ -366,7 +366,7 @@ export function TriageSystemSelector({ onSystemChange, selectedSystem }: TriageS
                             <div className="h-5 w-5 rounded-full bg-purple-100 flex items-center justify-center text-purple-800 text-xs">
                               3
                             </div>
-                            <span>AVPU scale used instead of "follows commands"</span>
+                            <span>AVPU scale used instead of &quot;follows commands&quot;</span>
                           </li>
                           <li className="flex items-start gap-2">
                             <div className="h-5 w-5 rounded-full bg-purple-100 flex items-center justify-center text-purple-800 text-xs">

@@ -319,7 +319,7 @@ export function DashboardSection({ emergencyMode, drillMode, patients, resources
             <CardHeader className="bg-gray-100 dark:bg-gray-800">
               <CardTitle className="flex items-center gap-2 text-xl">
                 <Activity className="h-6 w-6" />
-                Four S's Status
+                Four S&apos;s Status
               </CardTitle>
               <CardDescription>Current emergency assessment</CardDescription>
             </CardHeader>
@@ -363,7 +363,7 @@ export function DashboardSection({ emergencyMode, drillMode, patients, resources
             <CardFooter className="bg-gray-50 dark:bg-gray-800/50 p-4 border-t">
               <Button className="w-full bg-blue-600 hover:bg-blue-700">
                 <Activity className="h-4 w-4 mr-2" />
-                Update Four S's Report
+                Update Four S&apos;s Report
               </Button>
             </CardFooter>
           </Card>
@@ -450,7 +450,7 @@ export function DashboardSection({ emergencyMode, drillMode, patients, resources
                 </div>
 
                 <div className="flex flex-wrap gap-3">
-                  <Button className="bg-red-600 hover:bg-red-700">
+                  <Button className="bg-red-600 hover:bg-red-700 text-white">
                     <Calendar className="h-4 w-4 mr-2" />
                     Schedule Drill
                   </Button>

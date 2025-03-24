@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -37,77 +35,60 @@ import {
   Globe,
 } from "lucide-react"
 import Image from "next/image"
-import { useState } from "react"
 
 export default function Home() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <main className="min-h-screen">
       {/* Navigation */}
       <header className="bg-white dark:bg-gray-900 border-b dark:border-gray-800">
-      <div className="container mx-auto">
-        <div className="flex h-24 items-center justify-between">
-          {/* Logo Section */}
-          <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold text-red-600  mt-2">
-              <Image
-                width={200}
-                height={50}
-                src="/SRLogo.png"
-                alt="SurgeReady Logo"
-                className="h-auto w-auto"
-                priority
-              />
-            </Link>
-          </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
-            {[
-              { href: "#who-we-serve", label: "Who We Serve" },
-              { href: "#hospital-size", label: "Hospital Size" },
-              { href: "#solutions", label: "Solutions" },
-              { href: "#about-us", label: "About Us" },
-            ].map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="text-gray-700 hover:text-red-600 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
-              >
-                {label}
+        <div className="container mx-auto px-4">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center">
+              <Link href="/" className="text-xl font-bold text-red-600 mr-8">
+                <Image src="/SRLogo.png" alt="SurgeReady Solutions" width={200} height={100} />
               </Link>
-            ))}
-          </nav>
+            </div>
 
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-2">
-            <Link href="/login">
-              <Button variant="outline">Log In</Button>
-            </Link>
-            <Link href="#try-tools">
-            <Button className="bg-red-600 hover:bg-red-700">Request Demo</Button>
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle Menu"
-            >
-              {isMobileMenuOpen ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+            <div className="hidden md:flex items-center space-x-4">
+              <nav className="flex items-center space-x-4">
+                <Link
+                  href="#who-we-serve"
+                  className="text-gray-700 hover:text-red-600 dark:text-gray-300 dark:hover:text-white"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
+                  Who We Serve
+                </Link>
+                <Link
+                  href="#hospital-size"
+                  className="text-gray-700 hover:text-red-600 dark:text-gray-300 dark:hover:text-white"
+                >
+                  Hospital Size
+                </Link>
+                <Link
+                  href="#solutions"
+                  className="text-gray-700 hover:text-red-600 dark:text-gray-300 dark:hover:text-white"
+                >
+                  Solutions
+                </Link>
+                <Link
+                  href="#about-us"
+                  className="text-gray-700 hover:text-red-600 dark:text-gray-300 dark:hover:text-white"
+                >
+                  About Us
+                </Link>
+              </nav>
+              <div className="flex items-center space-x-2">
+                <Link href="/login">
+                  <Button variant="outline">Log In</Button>
+                </Link>
+                <Link href="#try-tools">
+                  <Button className="bg-red-600 hover:bg-red-700 text-white">Request Demo</Button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="md:hidden">
+              <Button variant="ghost" size="icon">
+                <span className="sr-only">Open menu</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -117,62 +98,26 @@ export default function Home() {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-              )}
-            </Button>
+              </Button>
+            </div>
           </div>
         </div>
-
-        {/* Mobile Navigation Menu */}
-        {isMobileMenuOpen && (
-          <nav className="md:hidden mt-2 space-y-2 p-4 bg-white dark:bg-gray-900 border-t dark:border-gray-800 rounded-lg shadow-lg">
-            {[
-              { href: "#who-we-serve", label: "Who We Serve" },
-              { href: "#hospital-size", label: "Hospital Size" },
-              { href: "#solutions", label: "Solutions" },
-              { href: "#about-us", label: "About Us" },
-            ].map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="block text-gray-700 hover:text-red-600 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
-              >
-                {label}
-              </Link>
-            ))}
-            <div className="flex flex-col space-y-2 mt-4">
-              <Link href="/login">
-                <Button variant="outline" className="w-full">Log In</Button>
-              </Link>
-              <Link href="#try-tools">
-                <Button className="bg-red-600 hover:bg-red-700 text-white w-full">Request Demo</Button>
-              </Link>
-            </div>
-          </nav>
-        )}
-      </div>
-    </header>
+      </header>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-red-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-20">
           <div className="flex flex-col items-center text-center">
-          <Image
-                width={600}
-                height={150}
-                src="/SRLogo.png"
-                alt="SurgeReady Logo"
-                className="h-auto w-auto"
-                priority
-                />
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mb-8">
+          <Image src="/SRLogo.png" alt="SurgeReady Solutions" width={600} height={600} />
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mb-8">
               Streamlining Emergency Response for Mass Casualty Events
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className=" text-white bg-red-600 hover:bg-red-700">
-              Request Demo
+              <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
+                Request Demo
               </Button>
               <Button size="lg" variant="outline">
-              Learn More
+                Learn More
               </Button>
             </div>
           </div>
@@ -232,6 +177,7 @@ export default function Home() {
                 </p>
               </CardContent>
             </Card>
+
             <Card className="text-center">
               <CardHeader>
                 <div className="mx-auto bg-red-100 dark:bg-red-900/20 p-3 rounded-full w-16 h-16 flex items-center justify-center mb-4">
@@ -248,6 +194,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Hospital Size Section */}
       <section id="hospital-size" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -312,7 +260,7 @@ export default function Home() {
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-red-600 hover:bg-red-700">Learn More</Button>
+                <Button className="w-full bg-red-600 hover:bg-red-700 text-white">Learn More</Button>
               </CardFooter>
             </Card>
 
@@ -589,7 +537,7 @@ export default function Home() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Who We Are</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            A team of emergency health care specialists dedicated to improving emergency response
+              A team of emergency health care specialists dedicated to improving emergency response
             </p>
           </div>
 
@@ -604,9 +552,7 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
                   <div className="aspect-video rounded-xl overflow-hidden">
-                    <Image
-                      width={600}
-                      height={400}
+                    <img
                       src="/placeholder.svg?height=400&width=600"
                       alt="Emergency medical team in action"
                       className="w-full h-full object-cover"
@@ -617,12 +563,12 @@ export default function Home() {
                 <div>
                   <h3 className="text-2xl font-bold mb-4 dark:text-white">Founded by ER Nurse Practitioners</h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  SurgeReady Solutions was founded by ER Nurse Practitioners with decades of experience and training
+                    SurgeReady Solutions was founded by ER Nurse Practitioners with decades of experience and training
                     in mass casualty response. After responding to a major transportation accident that overwhelmed
-                    their hospital&apos;s resources, they recognized the critical need for better emergency response systems.
+                    their hospital's resources, they recognized the critical need for better emergency response systems.
                   </p>
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  Our founding team combines over 75 years of emergency healthcare experience with cutting-edge
+                    Our founding team combines over 75 years of emergency healthcare experience with cutting-edge
                     technology expertise to create solutions that address real-world challenges faced by emergency
                     departments during crisis situations.
                   </p>
@@ -630,8 +576,8 @@ export default function Home() {
                   <div className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700">
                     <Quote className="h-8 w-8 text-red-600 flex-shrink-0" />
                     <blockquote className="italic text-gray-700 dark:text-gray-300">
-                    &quot;We built the system we wished we had during those critical moments when every second counts and
-                      lives hang in the balance.&quot;
+                      "We built the system we wished we had during those critical moments when every second counts and
+                      lives hang in the balance."
                     </blockquote>
                   </div>
                 </div>
@@ -690,90 +636,92 @@ export default function Home() {
             </TabsContent>
 
             <TabsContent value="team" className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Dr. Misha Turner */}
                 <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
                   <div className="flex items-center gap-4 mb-6">
                     <Avatar className="h-16 w-16">
-                      <AvatarImage src="/placeholder.svg" alt="Dr. Sarah Johnson" />
-                      <AvatarFallback>SJ</AvatarFallback>
+                      <AvatarImage src="/placeholder.svg" alt="Dr. Misha Turner" />
+                      <AvatarFallback>MT</AvatarFallback>
                     </Avatar>
                     <div>
-                      <h4 className="text-lg font-semibold dark:text-white">Dr. Sarah Johnson</h4>
-                      <p className="text-gray-600 dark:text-gray-400">Founder & Chief Medical Officer</p>
+                      <h4 className="text-lg font-semibold dark:text-white">Dr. Misha Turner</h4>
+                      <p className="text-gray-600 dark:text-gray-400">Co-Founder & Chief Medical Officer</p>
                     </div>
                   </div>
                   <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    Emergency Medicine physician with 15+ years of experience in trauma centers and disaster response.
-                    Led medical teams during multiple mass casualty events and developed protocols adopted by hospitals
-                    nationwide.
+                    With over 15 years of experience in nursing, hospital leadership, emergency management, and disaster
+                    response, Dr. Misha Turner is a dedicated leader in healthcare disaster preparedness. Holding a
+                    Doctorate of Nursing Practice, an MBA, and an RN license, she brings a unique combination of
+                    clinical expertise, strategic leadership and operational efficiency to crisis management.
                   </p>
-                  <div className="flex items-center gap-2">
+                  <p className="text-gray-600 dark:text-gray-300">
+                    FEMA-trained and deeply experienced in coordinating emergency response efforts, she specializes in
+                    developing resilient healthcare systems, ensuring hospitals and healthcare facilities are prepared
+                    for disasters of all scales. Passionate about safeguarding communities and strengthening disaster
+                    response frameworks, she is committed to advancing practices that enhance healthcare readiness and
+                    patient safety in times of crisis.
+                  </p>
+                  <div className="flex items-center gap-2 mt-4">
                     <Badge variant="outline">Emergency Medicine</Badge>
                     <Badge variant="outline">Disaster Response</Badge>
                   </div>
                 </div>
 
+                {/* Mark Stanley */}
                 <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
                   <div className="flex items-center gap-4 mb-6">
                     <Avatar className="h-16 w-16">
-                      <AvatarImage src="/placeholder.svg" alt="Michael Chen" />
-                      <AvatarFallback>MC</AvatarFallback>
+                      <AvatarImage src="/placeholder.svg" alt="Mark Stanley" />
+                      <AvatarFallback>MS</AvatarFallback>
                     </Avatar>
                     <div>
-                      <h4 className="text-lg font-semibold dark:text-white">Michael Chen</h4>
-                      <p className="text-gray-600 dark:text-gray-400">Co-Founder & Chief Technology Officer</p>
+                      <h4 className="text-lg font-semibold dark:text-white">Mark Stanley</h4>
+                      <p className="text-gray-600 dark:text-gray-400">Subject Expert</p>
                     </div>
                   </div>
                   <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    Former healthcare software architect with experience developing systems for major hospital networks.
-                    Specializes in creating intuitive interfaces for high-stress environments where clarity is critical.
+                    Mark Stanley holds a Bachelor of Science in Nursing (BSN) and brings over 15 years of hospital
+                    leadership experience, with a decade dedicated to emergency management and disaster response. His
+                    extensive training, including FEMA certifications, Hospital Incident Command and emergency
+                    management, positions him as a critical asset to SurgeReady.
                   </p>
-                  <div className="flex items-center gap-2">
+                  <div className="mt-4">
+                    <h5 className="font-medium mb-2 dark:text-white">Key Responsibilities:</h5>
+                    <ul className="space-y-1 text-gray-600 dark:text-gray-300 list-disc pl-5">
+                      <li>
+                        Developing and implementing educational tools to enhance staff preparedness for mass casualty
+                        events
+                      </li>
+                      <li>
+                        Streamlining the throughput process to improve efficiency during chaotic emergency situations
+                      </li>
+                      <li>
+                        Collaborating with the leadership team to establish best practices for emergency room logistics
+                      </li>
+                      <li>
+                        Conducting training sessions and simulations to ensure staff are well-versed in emergency
+                        protocols
+                      </li>
+                      <li>
+                        Evaluating and refining the logistics tool to adapt to evolving needs in emergency management
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="flex items-center gap-2 mt-4">
                     <Badge variant="outline">Healthcare IT</Badge>
-                    <Badge variant="outline">UX Design</Badge>
+                    <Badge variant="outline">Emergency Management</Badge>
                   </div>
                 </div>
               </div>
 
               <div className="text-center">
-                <h3 className="text-xl font-bold mb-6 dark:text-white">Our Expert Team</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  {[
-                    { name: "Dr. James Wilson", role: "Emergency Medicine Advisor" },
-                    { name: "Elena Rodriguez", role: "Training Director" },
-                    { name: "Dr. Robert Kim", role: "Research Lead" },
-                    { name: "Aisha Patel", role: "Implementation Specialist" },
-                    { name: "Thomas Nguyen", role: "Software Engineer" },
-                    { name: "Dr. Lisa Thompson", role: "Clinical Consultant" },
-                    { name: "Marcus Johnson", role: "Customer Success" },
-                    { name: "Dr. Emily Clark", role: "Triage Specialist" },
-                  ].map((member, index) => (
-                    <div key={index} className="text-center">
-                      <Avatar className="h-20 w-20 mx-auto mb-3">
-                        <AvatarImage src="/placeholder.svg" alt={member.name} />
-                        <AvatarFallback>
-                          {member.name
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")}
-                        </AvatarFallback>
-                      </Avatar>
-                      <h5 className="font-medium dark:text-white">{member.name}</h5>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">{member.role}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-red-50 dark:bg-red-900/10 p-6 rounded-lg mt-8">
-                <h4 className="text-lg font-semibold mb-3 dark:text-white">Join Our Team</h4>
+                <h3 className="text-xl font-bold mb-6 dark:text-white">Join Our Expert Team</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
                   We&apos;re always looking for passionate individuals who share our mission to improve emergency response
                   capabilities.
                 </p>
-                <Button variant="outline" className="bg-white dark:bg-gray-800">
-                  View Open Positions
-                </Button>
+                <Button variant="outline">View Open Positions</Button>
               </div>
             </TabsContent>
 
@@ -816,7 +764,7 @@ export default function Home() {
                       <h5 className="font-semibold dark:text-white">Memorial Hospital</h5>
                     </div>
                     <blockquote className="text-gray-600 dark:text-gray-300">
-                    &quot;SurgeReady&apos;s system was instrumental during our response to a multi-vehicle accident that brought
+                      &quot;SurgeReady&apos;s system was instrumental during our response to a multi-vehicle accident that brought
                       in 27 patients simultaneously. The streamlined triage process saved critical minutes for our most
                       severely injured patients.&quot;
                     </blockquote>
@@ -945,8 +893,8 @@ export default function Home() {
                 </ul>
                 <div className="mt-6 p-4 bg-white/10 rounded-lg">
                   <p className="text-sm italic">
-                    &quot;The demo was incredibly helpful in understanding how SurgeReady could be customized for our
-                    specific needs.&quot;
+                    &quote;The demo was incredibly helpful in understanding how SurgeReady could be customized for our
+                    specific needs.&quote;
                   </p>
                   <p className="text-xs mt-2">— Emergency Department Director</p>
                 </div>
@@ -1061,7 +1009,7 @@ export default function Home() {
                 </Button>
               </Link>
               <Link href="/dashboard">
-                <Button size="lg" className="bg-red-600 hover:bg-red-700">
+                <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
                   Go to Dashboard
                 </Button>
               </Link>

@@ -29,6 +29,8 @@ import {
   Printer,
   Save,
   Home,
+  Droplets,
+  Building,
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { DemoTourButton } from "./components/demo-tour"
@@ -38,6 +40,11 @@ import { TriageSection } from "./components/sections/triage-section"
 import { ChargeRNSection } from "./components/sections/charge-rn-section"
 import { ZoneSection } from "./components/sections/zone-section"
 import { DashboardSection } from "./components/sections/dashboard-section"
+
+// Import new components
+import { HICSDashboard } from "./components/hics-dashboard"
+import { TriageSystemSelector } from "./components/triage-system-selector"
+import { DecontaminationModule } from "./components/decontamination-module"
 
 // Import demo data and components
 import {
@@ -64,6 +71,7 @@ export default function ToolkitPage() {
   const [emergencyType, setEmergencyType] = useState("")
   const [activationTime, setActivationTime] = useState("")
   const [activeDrillScenario, setActiveDrillScenario] = useState<DrillScenario | null>(null)
+  const [selectedTriageSystem, setSelectedTriageSystem] = useState<"salt" | "start" | "jumpstart">("salt")
 
   // Demo data state
   const [patients, setPatients] = useState<Patient[]>([])
@@ -376,9 +384,12 @@ export default function ToolkitPage() {
     { id: "resources", name: "Resources", icon: <Clipboard className="h-5 w-5" />, category: "operational" },
     { id: "alerts", name: "Alerts", icon: <Bell className="h-5 w-5" />, category: "operational" },
     { id: "drills", name: "Drills", icon: <PlayCircle className="h-5 w-5" />, category: "operational" },
+    { id: "hics", name: "HICS", icon: <Building className="h-5 w-5" />, category: "operational" },
+    { id: "decontamination", name: "Decontamination", icon: <Droplets className="h-5 w-5" />, category: "operational" },
 
     // Configuration sections
     { id: "triage", name: "Triage Config", icon: <Activity className="h-5 w-5" />, category: "config" },
+    { id: "triageSystem", name: "Triage System", icon: <Activity className="h-5 w-5" />, category: "config" },
     { id: "charge", name: "Charge RN Config", icon: <Users className="h-5 w-5" />, category: "config" },
     { id: "red", name: "Red Zone Config", icon: <AlertCircle className="h-5 w-5 text-red-600" />, category: "config" },
     {
@@ -463,7 +474,7 @@ export default function ToolkitPage() {
               <div className="flex items-center gap-2">
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button className="bg-red-600 hover:bg-red-700">
+                    <Button className="bg-red-600 hover:bg-red-700 text-white">
                       <AlertCircle className="h-4 w-4 mr-2" />
                       Activate Emergency
                     </Button>
@@ -497,7 +508,7 @@ export default function ToolkitPage() {
                       <Button variant="outline" onClick={() => {}}>
                         Cancel
                       </Button>
-                      <Button className="bg-red-600 hover:bg-red-700" onClick={toggleEmergencyMode}>
+                      <Button className="bg-red-600 hover:bg-red-700 text-white" onClick={toggleEmergencyMode}>
                         Activate Emergency Mode
                       </Button>
                     </DialogFooter>
@@ -509,7 +520,7 @@ export default function ToolkitPage() {
                   Start Drill Mode
                 </Button>
 
-                <Button onClick={handleSave} className="bg-blue-600 hover:bg-blue-700">
+                <Button onClick={handleSave} className="bg-blue-600 hover:bg-blue-700 text-white">
                   <Save className="h-4 w-4 mr-2" />
                   Save Configuration
                 </Button>
@@ -535,11 +546,11 @@ export default function ToolkitPage() {
         <div className="px-4 pt-2">
           <Tabs defaultValue="operational" className="w-full">
             <TabsList className="mb-2">
-              <TabsTrigger value="operational" className="flex items-center gap-1 mr-4">
+              <TabsTrigger value="operational" className="flex items-center gap-1">
                 <Activity className="h-4 w-4" />
                 <span>Operations</span>
               </TabsTrigger>
-              <TabsTrigger value="configuration" className="flex items-center gap-1 ml-4">
+              <TabsTrigger value="configuration" className="flex items-center gap-1">
                 <Cog className="h-4 w-4" />
                 <span>Configuration</span>
               </TabsTrigger>
@@ -627,15 +638,25 @@ export default function ToolkitPage() {
             />
           )}
 
+          {activeSection === "hics" && <HICSDashboard emergencyMode={emergencyMode} drillMode={drillMode} />}
+
+          {activeSection === "decontamination" && (
+            <DecontaminationModule emergencyMode={emergencyMode} drillMode={drillMode} />
+          )}
+
+          {activeSection === "triageSystem" && (
+            <TriageSystemSelector selectedSystem={selectedTriageSystem} onSystemChange={setSelectedTriageSystem} />
+          )}
+
           {activeSection === "patients" && (
             <div className="space-y-6">
               <Card className="border-2 border-gray-200 dark:border-gray-700 w-full">
                 <CardHeader
                   className={`{emergencyMode
-                    ? "bg-red-600 text-white"
-                    : drillMode
-                      ? "bg-amber-500 text-white"
-                      : "bg-gray-100 dark:bg-gray-800"}`}
+                  ? "bg-red-600 text-white"
+                  : drillMode
+                    ? "bg-amber-500 text-white"
+                    : "bg-gray-100 dark:bg-gray-800"}`}
                 >
                   <CardTitle className="flex items-center gap-2 text-xl">
                     <Users className="h-6 w-6" />
@@ -706,7 +727,7 @@ export default function ToolkitPage() {
                         patients.
                       </p>
                       <div className="flex justify-center gap-4">
-                        <Button className="bg-red-600 hover:bg-red-700" onClick={toggleEmergencyMode}>
+                        <Button className="bg-red-600 hover:bg-red-700 text-white" onClick={toggleEmergencyMode}>
                           <AlertCircle className="h-4 w-4 mr-2" />
                           Activate Emergency
                         </Button>
@@ -727,10 +748,10 @@ export default function ToolkitPage() {
               <Card className="border-2 border-gray-200 dark:border-gray-700 w-full">
                 <CardHeader
                   className={`{emergencyMode
-                    ? "bg-red-600 text-white"
-                    : drillMode
-                      ? "bg-amber-500 text-white"
-                      : "bg-gray-100 dark:bg-gray-800"}`}
+                  ? "bg-red-600 text-white"
+                  : drillMode
+                    ? "bg-amber-500 text-white"
+                    : "bg-gray-100 dark:bg-gray-800"}`}
                 >
                   <CardTitle className="flex items-center gap-2 text-xl">
                     <Clipboard className="h-6 w-6" />
@@ -810,7 +831,7 @@ export default function ToolkitPage() {
                         resources.
                       </p>
                       <div className="flex justify-center gap-4">
-                        <Button className="bg-red-600 hover:bg-red-700" onClick={toggleEmergencyMode}>
+                        <Button className="bg-red-600 hover:bg-red-700 text-white text-white" onClick={toggleEmergencyMode}>
                           <AlertCircle className="h-4 w-4 mr-2" />
                           Activate Emergency
                         </Button>
@@ -831,10 +852,10 @@ export default function ToolkitPage() {
               <Card className="border-2 border-gray-200 dark:border-gray-700 w-full">
                 <CardHeader
                   className={`{emergencyMode
-                    ? "bg-red-600 text-white"
-                    : drillMode
-                      ? "bg-amber-500 text-white"
-                      : "bg-gray-100 dark:bg-gray-800"}`}
+                  ? "bg-red-600 text-white"
+                  : drillMode
+                    ? "bg-amber-500 text-white"
+                    : "bg-gray-100 dark:bg-gray-800"}`}
                 >
                   <CardTitle className="flex items-center gap-2 text-xl">
                     <Bell className="h-6 w-6" />
@@ -861,7 +882,7 @@ export default function ToolkitPage() {
                         send alerts.
                       </p>
                       <div className="flex justify-center gap-4">
-                        <Button className="bg-red-600 hover:bg-red-700" onClick={toggleEmergencyMode}>
+                        <Button className="bg-red-600 hover:bg-red-700 text-white" onClick={toggleEmergencyMode}>
                           <AlertCircle className="h-4 w-4 mr-2" />
                           Activate Emergency
                         </Button>

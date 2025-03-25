@@ -177,7 +177,7 @@ export async function processDocument(content: string, metadata: Record<string, 
     const chunks = await splitDocument(sanitizedContent);
     
     // 2. Process each chunk
-    const results = [];
+    const results: { error?: string; chunkIndex?: number }[] = [];
     
     for (let i = 0; i < chunks.length; i++) {
       const chunk = chunks[i];
@@ -211,15 +211,20 @@ export async function processDocument(content: string, metadata: Record<string, 
         // 5. Store in Supabase
         console.log(`Storing chunk ${i+1} in Supabase`);
         const result = await insertDocument(chunk, chunkMetadata, embedding);
-        results.push(result);
+        if (Array.isArray(result)) {
+          console.error(`Unexpected array result for chunk ${i+1}`);
+          results.push({ error: "Unexpected array result", chunkIndex: i });
+        } else {
+          results.push(result);
+        }
       } catch (chunkError) {
         console.error(`Error processing chunk ${i+1}:`, chunkError);
         // Continue with other chunks instead of failing the entire process
-        results.push({ error: chunkError.message, chunkIndex: i });
+        results.push({ error: chunkError instanceof Error ? chunkError.message : String(chunkError), chunkIndex: i });
       }
     }
     
-    console.log(`Completed processing ${chunks.length} chunks, ${results.filter(r => !r.error).length} successful`);
+    console.log(`Completed processing ${chunks.length} chunks, ${results.filter((r: { error?: string }) => !r.error).length} successful`);
     return results;
   } catch (error) {
     console.error("Error in document processing:", error);

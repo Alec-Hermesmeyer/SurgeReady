@@ -77,8 +77,8 @@ export default function Home() {
                 </Link>
               </nav>
               <div className="flex items-center space-x-2">
-                <Link href="/login">
-                  <Button variant="outline">Log In</Button>
+                <Link href="/toolkit">
+                  <Button variant="outline">Toolkit</Button>
                 </Link>
                 <Link href="#try-tools">
                   <Button className="bg-red-600 hover:bg-red-700 text-white">Request Demo</Button>

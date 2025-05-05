@@ -541,8 +541,8 @@ export default function Home() {
             </p>
           </div>
 
-          <Tabs defaultValue="story" className="max-w-5xl mx-auto">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
+          <Tabs defaultValue="story" className="max-w-5xl mx-auto ">
+            <TabsList className="grid w-full grid-cols-3 mb-8 flex align-center justify-evenly">
               <TabsTrigger value="story">Our Story</TabsTrigger>
               <TabsTrigger value="team">Our Team</TabsTrigger>
               <TabsTrigger value="impact">Our Impact</TabsTrigger>
@@ -638,84 +638,112 @@ export default function Home() {
             </TabsContent>
 
             <TabsContent value="team" className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Dr. Misha Turner */}
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
-                  <div className="flex items-center gap-4 mb-6">
-                    <Avatar className="h-16 w-16">
-                      <AvatarImage src="/placeholder.svg" alt="Dr. Misha Turner" />
-                      <AvatarFallback>MT</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <h4 className="text-lg font-semibold dark:text-white">Dr. Misha Turner</h4>
-                      <p className="text-gray-600 dark:text-gray-400">Co-Founder & Chief Medical Officer</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    With over 15 years of experience in nursing, hospital leadership, emergency management, and disaster
-                    response, Dr. Misha Turner is a dedicated leader in healthcare disaster preparedness. Holding a
-                    Doctorate of Nursing Practice, an MBA, and an RN license, she brings a unique combination of
-                    clinical expertise, strategic leadership and operational efficiency to crisis management.
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    FEMA-trained and deeply experienced in coordinating emergency response efforts, she specializes in
-                    developing resilient healthcare systems, ensuring hospitals and healthcare facilities are prepared
-                    for disasters of all scales. Passionate about safeguarding communities and strengthening disaster
-                    response frameworks, she is committed to advancing practices that enhance healthcare readiness and
-                    patient safety in times of crisis.
-                  </p>
-                  <div className="flex items-center gap-2 mt-4">
-                    <Badge variant="outline">Emergency Medicine</Badge>
-                    <Badge variant="outline">Disaster Response</Badge>
-                  </div>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
+  {/* Dr. Misha Turner */}
+  <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+    <div className="flex items-center gap-4 mb-6">
+      <Avatar className="h-16 w-16">
+        <AvatarImage src="/placeholder.svg" alt="Dr. Misha Turner" />
+        <AvatarFallback>MT</AvatarFallback>
+      </Avatar>
+      <div>
+        <h4 className="text-lg font-semibold dark:text-white">Dr. Misha Turner</h4>
+        <p className="text-gray-600 dark:text-gray-400">Co-Founder & Chief Medical Officer</p>
+      </div>
+    </div>
+    <p className="text-gray-600 dark:text-gray-300 mb-4">
+      With over 15 years of experience in nursing, hospital leadership, emergency management, and disaster
+      response, Dr. Misha Turner is a dedicated leader in healthcare disaster preparedness. Holding a
+      Doctorate of Nursing Practice, an MBA, and an RN license, she brings a unique combination of
+      clinical expertise, strategic leadership and operational efficiency to crisis management.
+    </p>
+    <p className="text-gray-600 dark:text-gray-300">
+      FEMA-trained and deeply experienced in coordinating emergency response efforts, she specializes in
+      developing resilient healthcare systems, ensuring hospitals and healthcare facilities are prepared
+      for disasters of all scales. Passionate about safeguarding communities and strengthening disaster
+      response frameworks, she is committed to advancing practices that enhance healthcare readiness and
+      patient safety in times of crisis.
+    </p>
+    <div className="flex items-center gap-2 mt-4">
+      <Badge variant="outline">Emergency Medicine</Badge>
+      <Badge variant="outline">Disaster Response</Badge>
+    </div>
+  </div>
 
-                {/* Mark Stanley */}
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
-                  <div className="flex items-center gap-4 mb-6">
-                    <Avatar className="h-16 w-16">
-                      <AvatarImage src="/placeholder.svg" alt="Mark Stanley" />
-                      <AvatarFallback>MS</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <h4 className="text-lg font-semibold dark:text-white">Mark Stanley</h4>
-                      <p className="text-gray-600 dark:text-gray-400">Subject Expert</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    Mark Stanley holds a Bachelor of Science in Nursing (BSN) and brings over 15 years of hospital
-                    leadership experience, with a decade dedicated to emergency management and disaster response. His
-                    extensive training, including FEMA certifications, Hospital Incident Command and emergency
-                    management, positions him as a critical asset to SurgeReady.
-                  </p>
-                  <div className="mt-4">
-                    <h5 className="font-medium mb-2 dark:text-white">Key Responsibilities:</h5>
-                    <ul className="space-y-1 text-gray-600 dark:text-gray-300 list-disc pl-5">
-                      <li>
-                        Developing and implementing educational tools to enhance staff preparedness for mass casualty
-                        events
-                      </li>
-                      <li>
-                        Streamlining the throughput process to improve efficiency during chaotic emergency situations
-                      </li>
-                      <li>
-                        Collaborating with the leadership team to establish best practices for emergency room logistics
-                      </li>
-                      <li>
-                        Conducting training sessions and simulations to ensure staff are well-versed in emergency
-                        protocols
-                      </li>
-                      <li>
-                        Evaluating and refining the logistics tool to adapt to evolving needs in emergency management
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="flex items-center gap-2 mt-4">
-                    <Badge variant="outline">Healthcare IT</Badge>
-                    <Badge variant="outline">Emergency Management</Badge>
-                  </div>
-                </div>
-              </div>
+  {/* Mark Stanley */}
+  <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+    <div className="flex items-center gap-4 mb-6">
+      <Avatar className="h-16 w-16">
+        <AvatarImage src="/placeholder.svg" alt="Mark Stanley" />
+        <AvatarFallback>MS</AvatarFallback>
+      </Avatar>
+      <div>
+        <h4 className="text-lg font-semibold dark:text-white">Mark Stanley</h4>
+        <p className="text-gray-600 dark:text-gray-400">Subject Expert</p>
+      </div>
+    </div>
+    <p className="text-gray-600 dark:text-gray-300 mb-4">
+      Mark Stanley holds a Bachelor of Science in Nursing (BSN) and brings over 15 years of hospital
+      leadership experience, with a decade dedicated to emergency management and disaster response. His
+      extensive training, including FEMA certifications, Hospital Incident Command and emergency
+      management, positions him as a critical asset to SurgeReady.
+    </p>
+    <div className="mt-4">
+      <h5 className="font-medium mb-2 dark:text-white">Key Responsibilities:</h5>
+      <ul className="space-y-1 text-gray-600 dark:text-gray-300 list-disc pl-5">
+        <li>
+          Developing and implementing educational tools to enhance staff preparedness for mass casualty
+          events
+        </li>
+        <li>
+          Streamlining the throughput process to improve efficiency during chaotic emergency situations
+        </li>
+        <li>
+          Collaborating with the leadership team to establish best practices for emergency room logistics
+        </li>
+        <li>
+          Conducting training sessions and simulations to ensure staff are well-versed in emergency
+          protocols
+        </li>
+        <li>
+          Evaluating and refining the logistics tool to adapt to evolving needs in emergency management
+        </li>
+      </ul>
+    </div>
+    <div className="flex items-center gap-2 mt-4">
+      <Badge variant="outline">Healthcare IT</Badge>
+      <Badge variant="outline">Emergency Management</Badge>
+    </div>
+  </div>
+
+  {/* John Jones */}
+  <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+    <div className="flex items-center gap-4 mb-6">
+      <Avatar className="h-16 w-16">
+        <AvatarImage src="/placeholder.svg" alt="John Jones" />
+        <AvatarFallback>JJ</AvatarFallback>
+      </Avatar>
+      <div>
+        <h4 className="text-lg font-semibold dark:text-white">John Jones</h4>
+        <p className="text-gray-600 dark:text-gray-400">Healthcare Safety and Emergency Preparedness Professional</p>
+      </div>
+    </div>
+    <p className="text-gray-600 dark:text-gray-300 mb-4">
+      John Jones brings over 35 years of healthcare industry experience as a Safety Officer and Security Director. His comprehensive career includes oversight of Safety, Security, Hazardous Materials, Fire Safety, Emergency Management, Medical Equipment, and OSHA compliance.
+    </p>
+    <p className="text-gray-600 dark:text-gray-300 mb-4">
+      His extensive background spans 23 years in the Emergency Department, 15 years as an Advanced EMT, and 12 years in leadership as a Safety Officer. John holds advanced certifications including Master Level Certified Healthcare Safety Professional and Master Level Certified Healthcare Emergency Professional.
+    </p>
+    <p className="text-gray-600 dark:text-gray-300">
+      As a Division Emergency Preparedness Coordinator for 11 hospitals across three states, John has chaired multiple regional committees and worked with the Utah Department of Health and Human Services. He is passionate about fostering cross-sector partnerships and developing comprehensive emergency response plans, particularly for special needs schools.
+    </p>
+    <div className="flex items-center flex-wrap gap-2 mt-4">
+      <Badge variant="outline">Emergency Preparedness</Badge>
+      <Badge variant="outline">Healthcare Safety</Badge>
+      <Badge variant="outline">Disaster Planning</Badge>
+    </div>
+  </div>
+</div>
 
               <div className="text-center">
                 <h3 className="text-xl font-bold mb-6 dark:text-white">Join Our Expert Team</h3>

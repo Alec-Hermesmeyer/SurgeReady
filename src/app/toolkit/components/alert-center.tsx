@@ -95,12 +95,12 @@ export function AlertCenter({ alerts, onSendAlert, onMarkAsRead, onMarkAllAsRead
                 Send Alert
               </Button>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="bg-white">
               <DialogHeader>
                 <DialogTitle>Send Alert</DialogTitle>
                 <DialogDescription>Create a new alert to notify staff.</DialogDescription>
               </DialogHeader>
-              <div className="grid gap-4 py-4">
+              <div className="grid gap-4 py-4 bgf">
                 <div className="space-y-2">
                   <Label htmlFor="alert-message">Message</Label>
                   <Textarea
@@ -161,7 +161,7 @@ export function AlertCenter({ alerts, onSendAlert, onMarkAsRead, onMarkAllAsRead
           alerts.map((alert) => (
             <div
               key={alert.id}
-              className={`flex gap-3 p-3 rounded-lg border ${!alert.read ? "bg-gray-50 dark:bg-gray-800/50" : ""}`}
+              className={`flex gap-3 p-3 rounded-lg border ${!alert.read ? "bg-white dark:bg-gray-800/50" : ""}`}
             >
               <div className="mt-0.5">{getSeverityIcon(alert.severity)}</div>
               <div className="flex-1">

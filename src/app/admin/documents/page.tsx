@@ -58,7 +58,7 @@ export default function DocumentsAdminPage() {
   const fetchDocuments = async () => {
     setIsLoading(true)
     try {
-      const response = await fetch(`/api/documents`)
+      const response = await fetch(`/api/documents?limit=${pageSize}&offset=${currentPage * pageSize}`)
       if (!response.ok) {
         throw new Error("Failed to fetch documents")
       }
@@ -113,7 +113,7 @@ export default function DocumentsAdminPage() {
       formData.append("metadata", JSON.stringify(metadata))
 
       // Send the request
-      console.log("Sending request to /api/admin/documents")
+      console.log("Sending request to /api/documents")
       const response = await fetch("/api/documents", {
         method: "POST",
         body: formData,
@@ -158,7 +158,7 @@ export default function DocumentsAdminPage() {
     }
 
     try {
-      const response = await fetch(`/api/admin/documents?id=${id}`, {
+      const response = await fetch(`/api/documents?id=${id}`, {
         method: "DELETE",
       })
 

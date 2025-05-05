@@ -18,8 +18,10 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import type { Patient } from "../demo-data"
-import { Edit, Eye, UserPlus } from "lucide-react"
+// Add these imports at the top with the other imports
+import { ArrowDown, ArrowUp, Edit, Eye, UserPlus } from "lucide-react"
 
+// Update the PatientTableProps interface to include the existing props
 interface PatientTableProps {
   patients: Patient[]
   onAddPatient?: (patient: Patient) => void
@@ -46,7 +48,50 @@ export function PatientTable({ patients, onAddPatient, onUpdatePatient, filter =
     status: "Waiting",
   })
 
-  const displayedPatients = filter === "All" ? patients : patients.filter((patient) => patient.triage === filter)
+  // In the PatientTable component, add these state variables after the existing useState declarations
+  const [sortField, setSortField] = useState<keyof Patient>("id")
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc")
+
+  // Add this sorting function before the displayedPatients declaration
+  const handleSort = (field: keyof Patient) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc")
+    } else {
+      setSortField(field)
+      setSortDirection("asc")
+    }
+  }
+
+  // Replace the displayedPatients declaration with this sorted version
+  const displayedPatients =
+    filter === "All" ? [...patients] : [...patients].filter((patient) => patient.triage === filter)
+
+  // Sort the displayed patients
+  displayedPatients.sort((a, b) => {
+    const aValue = a[sortField]
+    const bValue = b[sortField]
+
+    if (aValue === bValue) return 0
+
+    // Handle different types of values
+    if (typeof aValue === "string" && typeof bValue === "string") {
+      return sortDirection === "asc" ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue)
+    }
+
+    // For numbers and other types
+    if (aValue === undefined || bValue === undefined) return 0
+    return sortDirection === "asc" ? (aValue < bValue ? -1 : 1) : aValue > bValue ? -1 : 1
+  })
+
+  // Add a helper function to render sort indicators
+  const renderSortIndicator = (field: keyof Patient) => {
+    if (sortField !== field) return null
+    return sortDirection === "asc" ? (
+      <ArrowUp className="h-3 w-3 ml-1 inline" />
+    ) : (
+      <ArrowDown className="h-3 w-3 ml-1 inline" />
+    )
+  }
 
   const handleViewPatient = (patient: Patient) => {
     setSelectedPatient(patient)
@@ -130,7 +175,7 @@ export function PatientTable({ patients, onAddPatient, onUpdatePatient, filter =
               Add Patient
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="bg-white">
             <DialogHeader>
               <DialogTitle>Add New Patient</DialogTitle>
               <DialogDescription>Enter the details of the new patient.</DialogDescription>
@@ -246,14 +291,46 @@ export function PatientTable({ patients, onAddPatient, onUpdatePatient, filter =
 
       <div className="border rounded-md">
         <Table>
+          {/* Update the TableHeader section to include sort functionality */}
+          {/* Replace the existing TableHeader with this: */}
           <TableHeader>
             <TableRow>
-              <TableHead>ID</TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead>Age</TableHead>
-              <TableHead>Triage</TableHead>
-              <TableHead>Location</TableHead>
-              <TableHead>Status</TableHead>
+              <TableHead
+                className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+                onClick={() => handleSort("id")}
+              >
+                ID {renderSortIndicator("id")}
+              </TableHead>
+              <TableHead
+                className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+                onClick={() => handleSort("name")}
+              >
+                Name {renderSortIndicator("name")}
+              </TableHead>
+              <TableHead
+                className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+                onClick={() => handleSort("age")}
+              >
+                Age {renderSortIndicator("age")}
+              </TableHead>
+              <TableHead
+                className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+                onClick={() => handleSort("triage")}
+              >
+                Triage {renderSortIndicator("triage")}
+              </TableHead>
+              <TableHead
+                className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+                onClick={() => handleSort("location")}
+              >
+                Location {renderSortIndicator("location")}
+              </TableHead>
+              <TableHead
+                className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+                onClick={() => handleSort("status")}
+              >
+                Status {renderSortIndicator("status")}
+              </TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -296,7 +373,7 @@ export function PatientTable({ patients, onAddPatient, onUpdatePatient, filter =
 
       {/* View Patient Dialog */}
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-        <DialogContent className="max-w-3xl">
+        <DialogContent className="max-w-3xl bg-white">
           <DialogHeader>
             <DialogTitle>Patient Details</DialogTitle>
           </DialogHeader>
@@ -366,7 +443,7 @@ export function PatientTable({ patients, onAddPatient, onUpdatePatient, filter =
 
       {/* Edit Patient Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent>
+        <DialogContent className="bg-white">
           <DialogHeader>
             <DialogTitle>Edit Patient</DialogTitle>
             <DialogDescription>Update the patient's information.</DialogDescription>

@@ -22,37 +22,37 @@ const tourSteps: TourStep[] = [
   {
     title: "Emergency Activation",
     description: "Click here to activate emergency mode during a real mass casualty event.",
-    target: "button:contains('Activate Emergency')",
+    target: "button[data-tour='activate-emergency']",
     position: "bottom",
   },
   {
     title: "Drill Mode",
     description: "Practice with drill scenarios without activating a full emergency response.",
-    target: "button:contains('Start Drill Mode')",
+    target: "button[data-tour='start-drill']",
     position: "bottom",
   },
   {
     title: "Patient Management",
     description: "Track and manage patients with different triage levels.",
-    target: "button:contains('Patients')",
+    target: "button[data-tour='patients']",
     position: "right",
   },
   {
     title: "Resource Management",
     description: "Monitor and request critical supplies and equipment.",
-    target: "button:contains('Resources')",
+    target: "button[data-tour='resources']",
     position: "right",
   },
   {
     title: "Alert Center",
     description: "Send and receive important alerts during an emergency.",
-    target: "button:contains('Alerts')",
+    target: "button[data-tour='alerts']",
     position: "right",
   },
   {
     title: "Configuration",
     description: "Set up your emergency response protocols before an event occurs.",
-    target: "button[value='configuration']",
+    target: "button[data-tour='configuration']",
     position: "bottom",
   },
 ]
@@ -90,7 +90,7 @@ export function DemoTour({ onClose }: { onClose: () => void }) {
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center pointer-events-none">
       <div className="absolute inset-0" onClick={onClose} />
 
-      <Card className="w-full max-w-md pointer-events-auto">
+      <Card className="w-full max-w-md pointer-events-auto bg-white">
         <CardHeader>
           <div className="flex justify-between items-center">
             <CardTitle>{tourSteps[currentStep].title}</CardTitle>

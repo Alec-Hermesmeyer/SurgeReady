@@ -1,70 +1,57 @@
 import { NextRequest, NextResponse } from "next/server";
-import { processDocument, processFile } from "@/lib/simplified-document-processor";
-import { QdrantClient } from "@qdrant/js-client-rest";
+import { processDocument, processFile, validateFile } from "@/lib/simple-document-processor";
+import { getAllDocuments, deleteDocument, searchDocuments } from "@/lib/simple-document-storage";
 
-// Initialize Qdrant client
-const qdrant = new QdrantClient({
-  url: process.env.QDRANT_URL || "http://localhost:6333",
-  apiKey: process.env.QDRANT_API_KEY,
-});
-
-const COLLECTION_NAME = "documents";
-
-// Function to get all documents from Qdrant with pagination
-async function getAllDocumentsFromQdrant(limit: number = 20, offset: number = 0) {
-  try {
-    // Get the total count of documents
-    const countInfo = await qdrant.getCollection(COLLECTION_NAME);
-    const count = countInfo.points_count || 0;
-
-    // Scroll through documents with pagination
-    const response = await qdrant.scroll(COLLECTION_NAME, {
-      limit: limit,
-      offset: offset,
-      with_payload: true,
-      with_vector: false,
-    });
-
-    // Format the documents to match the expected format in the frontend
-    const documents = response.points.map((point) => ({
-      id: point.id,
-      content: point.payload?.content ?? "",
-      metadata: {
-        title: point.payload?.title ?? "",
-        category: point.payload?.category,
-        emergencyType: (point.payload?.metadata as { emergencyType?: string })?.emergencyType,
-        tags: (point.payload?.metadata as { tags?: string[] })?.tags || [],
-        ...(point.payload?.metadata || {}),
-      },
-      created_at: point.payload?.createdAt || new Date().toISOString(),
-    }));
-
-    return { documents, count };
-  } catch (error) {
-    console.error("Error fetching documents from Qdrant:", error);
-    throw error;
-  }
-}
-
-// GET: Fetch documents with pagination
+// GET: Fetch documents with pagination and optional search
 export async function GET(request: NextRequest) {
   try {
     console.log("GET request to /api/documents");
-    // Parse query parameters
+    
     const url = new URL(request.url);
     const limit = Number.parseInt(url.searchParams.get("limit") || "20");
     const offset = Number.parseInt(url.searchParams.get("offset") || "0");
-    console.log(`Fetching documents with limit=${limit}, offset=${offset}`);
+    const search = url.searchParams.get("search") || "";
+    const category = url.searchParams.get("category") || "";
+    const emergency_type = url.searchParams.get("emergency_type") || "";
     
-    // Get documents from Qdrant
-    const { documents, count } = await getAllDocumentsFromQdrant(limit, offset);
+    console.log(`Fetching documents with limit=${limit}, offset=${offset}, search="${search}"`);
     
-    return NextResponse.json({
-      documents,
-      count,
-      limit,
-      offset
-    });
+    let result;
+    
+    if (search.trim()) {
+      // Use search functionality
+      const documents = await searchDocuments(
+        search,
+        category || undefined,
+        emergency_type || undefined
+      );
+      
+      // Apply pagination to search results
+      const paginatedDocs = documents.slice(offset, offset + limit);
+      
+      result = {
+        documents: paginatedDocs,
+        count: documents.length,
+        limit,
+        offset
+      };
+    } else {
+      // Use regular pagination
+      result = await getAllDocuments(
+        limit,
+        offset,
+        category || undefined,
+        emergency_type || undefined
+      );
+      
+      result = {
+        ...result,
+        limit,
+        offset
+      };
+    }
+    
+    return NextResponse.json(result);
   } catch (error: any) {
     console.error("Error fetching documents:", error);
     return NextResponse.json(
@@ -80,17 +67,23 @@ export async function POST(request: NextRequest) {
     console.log("POST request to /api/documents");
     const formData = await request.formData();
     
-    // Extract file or text content
+    // Extract form data
     const file = formData.get("file") as File | null;
     const text = formData.get("text") as string | null;
-    const metadataStr = formData.get("metadata") as string | null;
+    const title = formData.get("title") as string | null;
+    const category = formData.get("category") as string | null;
+    const emergency_type = formData.get("emergency_type") as string | null;
+    const tagsStr = formData.get("tags") as string | null;
     
     console.log("Form data received:", {
       hasFile: !!file,
       fileType: file?.type,
       hasText: !!text,
       textLength: text?.length,
-      hasMetadata: !!metadataStr
+      title,
+      category,
+      emergency_type,
+      tags: tagsStr
     });
     
     if (!file && !text) {
@@ -100,33 +93,56 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Parse metadata
-    let metadata = {};
-    if (metadataStr) {
+    // Parse tags
+    let tags: string[] = [];
+    if (tagsStr) {
       try {
-        metadata = JSON.parse(metadataStr);
+        tags = JSON.parse(tagsStr);
+        if (!Array.isArray(tags)) {
+          tags = [tagsStr];
+        }
       } catch (e) {
-        return NextResponse.json(
-          { error: "Invalid metadata format" },
-          { status: 400 }
-        );
+        tags = tagsStr.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
       }
     }
     
-    // Process the document - Make sure this function uses Qdrant internally
-    // If processFile and processDocument are still using Supabase, they'll need to be updated too
-    let result;
+    // Prepare metadata
+    const metadata = {
+      title: title || undefined,
+      category: category || "General",
+      emergency_type: emergency_type || undefined,
+      tags: tags,
+    };
+    
+    let documentIds: string[];
+    
     if (file) {
+      // Validate file first
+      const validation = validateFile(file);
+      if (!validation.valid) {
+        return NextResponse.json(
+          { error: validation.error },
+          { status: 400 }
+        );
+      }
+      
       // Process file
-      result = await processFile(file, metadata);
+      documentIds = await processFile(file, metadata);
     } else if (text) {
       // Process text
-      result = await processDocument(text, metadata);
+      documentIds = await processDocument(text, metadata);
+    } else {
+      return NextResponse.json(
+        { error: "No content provided" },
+        { status: 400 }
+      );
     }
     
     return NextResponse.json({
       success: true,
-      documentCount: Array.isArray(result) ? result.length : 1
+      documentIds,
+      documentCount: documentIds.length,
+      message: `Successfully processed ${documentIds.length} document(s)`
     });
   } catch (error: any) {
     console.error("Error processing document:", error);
@@ -154,12 +170,19 @@ export async function DELETE(request: NextRequest) {
       );
     }
     
-    // Delete from Qdrant
-    await qdrant.delete(COLLECTION_NAME, {
-      points: [id],
-    });
+    const success = await deleteDocument(id);
     
-    return NextResponse.json({ success: true });
+    if (success) {
+      return NextResponse.json({ 
+        success: true,
+        message: "Document deleted successfully"
+      });
+    } else {
+      return NextResponse.json(
+        { error: "Document not found or could not be deleted" },
+        { status: 404 }
+      );
+    }
   } catch (error: any) {
     console.error("Error deleting document:", error);
     return NextResponse.json(
